@@ -3,76 +3,65 @@ import { NavLink } from 'react-router-dom';
 import SignOut from '../../Component/SignOut/SignOut';
 import useAuth from '../../Hooks/useAuth';
 import Toggle from '../../Component/Toggle/Toggle';
+import logo from '../../assets/Images/large (2).png'
 
 const Navbar = () => {
-    const { user } = useAuth();
+    const {user} = useAuth();
+    const NavOptions = <>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/Biodatas">Biodatas</NavLink></li>
+        <li><NavLink to="/AboutUs"> About Us</NavLink></li>
+        <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
 
-    const NavOptions = (
-        <>
-            <li className="mx-2">
-                <NavLink to="/" className="text-gray-700 hover:text-blue-600">Home</NavLink>
-            </li>
-            <li className="mx-2">
-                <NavLink to="/order/salad" className="text-gray-700 hover:text-blue-600">Order Food</NavLink>
-            </li>
-            {user ? (
-                <>
-                    <li className="mx-2">
-                        <span className="text-gray-700 font-bold">Monir</span>
-                    </li>
-                </>
-            ) : (
-                <>
-                    <li className="mx-2">
-                        <NavLink to="/signup" className="text-gray-700 hover:text-blue-600">Sign Up</NavLink>
-                    </li>
-                </>
-            )}
-        </>
-    );
+        {
+            user ? <>
+             <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                {/* <span>{user?.displayName}</span> */}
+            </> : <>
 
+            </>
+        }
+
+    </>
     return (
-        <div className="w-full bg-white shadow-md fixed z-10">
-            <div className="max-w-screen-xl mx-auto flex justify-between items-center p-4">
-                {/* Navbar Start */}
-                <div className="flex items-center">
-                    <div className="dropdown lg:hidden">
-                        <button className="btn btn-ghost" aria-label="Menu">
+        <div>
+            <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 bg-base-100">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
+                                className="h-5 w-5"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
+                                stroke="currentColor">
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16"
-                                />
+                                    d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
-                        </button>
-                        <ul className="dropdown-content mt-2 w-48 bg-white shadow-lg rounded-lg p-4">
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content items-center bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {NavOptions}
                         </ul>
                     </div>
-                    <a className="text-2xl font-bold text-gray-800">Bistro Boss</a>
+                    <img className='w-36 h-16' src={logo} alt="" />
                 </div>
-
-                {/* Navbar Center */}
-                <div className="hidden lg:flex">
-                    <ul className="flex space-x-6">{NavOptions}</ul>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        {NavOptions}
+                    </ul>
                 </div>
-
-                {/* Navbar End */}
-                <div className="flex items-center gap-4">
-                    <Toggle />
-                    <SignOut />
+                <div className="navbar-end gap-2">
+                    <Toggle></Toggle>
+                  <SignOut></SignOut>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Navbar;
+export default Navbar; 
