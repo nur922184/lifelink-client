@@ -6,6 +6,7 @@ import Error from '../Shared/Error/Error';
 import Loading from '../Shared/Loading/Loading';
 import SignUp from '../Pages/SignUP/SignUp';
 import SignIn from '../Pages/SignIn/SignIn';
+import AboutUs from '../Pages/About Us/AboutUs';
 
 const Router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const Router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
+            },
+            {
+                path: "/AboutUs",
+                element: <AboutUs></AboutUs>,
             },
             {
                 path: "/l",
