@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import SignOut from '../../Component/SignOut/SignOut';
 import useAuth from '../../Hooks/useAuth';
 import Toggle from '../../Component/Toggle/Toggle';
 import logo from '../../assets/Images/large (2).png'
 
 const Navbar = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const NavOptions = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/Biodatas">Biodatas</NavLink></li>
@@ -15,7 +15,7 @@ const Navbar = () => {
 
         {
             user ? <>
-             <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
                 {/* <span>{user?.displayName}</span> */}
             </> : <>
 
@@ -48,7 +48,9 @@ const Navbar = () => {
                             {NavOptions}
                         </ul>
                     </div>
-                    <img className='w-36 h-16' src={logo} alt="" />
+                    <Link to='/'>
+                        <img className='w-36 h-16' src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -57,7 +59,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-2">
                     <Toggle></Toggle>
-                  <SignOut></SignOut>
+                    <SignOut></SignOut>
                 </div>
             </div>
         </div>

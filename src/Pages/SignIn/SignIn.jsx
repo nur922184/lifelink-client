@@ -6,6 +6,8 @@ import groovyWalkAnimation from "../../assets/lotte-json/Animation-login.json";
 import useAuth from '../../Hooks/useAuth';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import SignINImage from '../../assets/Images/desktop-wallpaper-admin-login.jpg'
+import logo from '../../assets/Images/logo-LifeLink.png'
 const SignIn = () => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate();
@@ -36,42 +38,43 @@ const SignIn = () => {
 
 
     return (
-        <div className="hero dark:bg-gray-900 dark:text-white bg-base-200 min-h-screen">
+        <div style={{
+            backgroundImage: `url(${SignINImage})`,
+        }}
+        className="hero dark:bg-gray-900 dark:text-white bg-base-200 min-h-screen">
             <Helmet>
                 <title>New Project | Sign In</title>
             </Helmet>
             <div className="hero-content  flex-col-reverse md:flex-row-reverse">
-                <div className="card bg-base-100 dark:bg-gray-900 dark:text-white md:w-[40%] shadow-2xl">
+                <div 
+                    className="card bg-base-75 bg-center bg-cover text-white md:w-[40%] shadow-2xl">
                     <div className='text-center px-5'>
                         <h1 className="text-5xl font-bold">Sign In now!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
+                       <img className='w-36 h-24 mt-4 m-auto' src={logo} alt="" />
                     </div>
-                    <form onSubmit={handleLogin} className="card-body dark:bg-gray-900 dark:text-white">
+                    <form onSubmit={handleLogin} className="card-body text-white">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Email</span>
+                                <span className="label-text text-lg text-cyan-100">Email</span>
                             </label>
                             <input type="email" placeholder="email"
                                 name="email"
-                                className="input input-bordered dark:bg-gray-800 dark:text-white" required />
+                                className="input input-bordered dark:bg-gray-800 text-white" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Password</span>
+                                <span className="label-text text-lg text-cyan-100">Password</span>
                             </label>
                             <input type={show ? 'text' : 'password'}
                                 name="password"
-                                placeholder="password" className="input input-bordered dark:bg-gray-800 dark:text-white" required />
-                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[345px] '>
+                                placeholder="password" className="input input-bordered dark:bg-gray-800 text-white" required />
+                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[350px] '>
                                 {
                                     show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                 }
                             </div>
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover dark:text-cyan-100">Forgot password?</a>
+                                <a href="#" className="label-text-alt link link-hover text-cyan-100">Forgot password?</a>
                             </label>
                         </div>
                         {/* <div className="form-control">
@@ -85,7 +88,7 @@ const SignIn = () => {
                     </div> */}
                         <div className="form-control mt-6">
                             {/* to do applly disabled */}
-                            <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
+                            <input disabled={false} className="btn bg-violet-300" type="submit" value="Login" />
                         </div>
                     </form>
                     <p className='px-6'><small>New Here? <Link className='text-blue-700 text-sm font-bold' to="/signup"> Create an account</Link></small></p>
@@ -93,7 +96,7 @@ const SignIn = () => {
                 </div>
 
                 <div className="text-center md:w-1/2 lg:text-left">
-                    <div className="text-center m-auto  w-3/4 dark:bg-gray-900 dark:text-white">
+                    <div className="text-center m-auto  w-3/4 dark:text-white">
                         <Lottie animationData={groovyWalkAnimation} loop={true} />
                     </div>
                 </div>

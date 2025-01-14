@@ -9,7 +9,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="bg-white py-16 px-6 md:px-20">
+    <section className="bg-white dark:bg-gray-900 dark:text-white py-16 px-6 md:px-20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-800 text-center mb-10">Why Choose LifeLink?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

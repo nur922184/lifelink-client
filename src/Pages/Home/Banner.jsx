@@ -10,7 +10,7 @@ import img6 from "../../assets/Banner-image/6.jpg";
 
 const Banner = () => {
   return (
-    <div>
+    <div className="mb-11">
       <Carousel
         showThumbs={false} 
         autoPlay={true} 

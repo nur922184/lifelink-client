@@ -8,6 +8,8 @@ import useAuth from '../../Hooks/useAuth';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import logo from '../../assets/Images/logo-LifeLink.png'
+import SignUpImage from '../../assets/Images/desktop-wallpaper-admin-login.jpg'
 
 const SignUp = () => {
     const [show, setShow] = useState(false)
@@ -54,7 +56,11 @@ const SignUp = () => {
     }
 
     return (
-        <div className="hero bg-base-200 min-h-screen dark:bg-gray-900">
+        <div style={{
+            backgroundImage: `url(${SignUpImage})`,
+        }}
+        
+            className="hero bg-base-200 min-h-screen text-slate-50">
             <Helmet>
                 <title>New Project | Sign Up</title>
             </Helmet>
@@ -64,21 +70,18 @@ const SignUp = () => {
                         <Lottie animationData={groovyWalkAnimation} loop={true} />;
                     </div>
                 </div>
-                <div className=" dark:bg-gray-900 dark:text-white card bg-base-100 md:w-[40%] shadow-2xl">
+                <div className=" text-white card bg-base-70 md:w-[40%] shadow-2xl">
                     <div className='text-center px-5'>
                         <h1 className="text-5xl font-bold">Sign Up Now!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
+                        <img className='w-36 h-24 mt-4 m-auto' src={logo} alt="" />
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Name</span>
+                                <span className="label-text text-cyan-100">Name</span>
                             </label>
-                            <input type="text" placeholder="name" {...register("name", { required: true })} name='name' className="dark:bg-gray-800 dark:text-white input input-bordered" />
-                            {errors.name && <p className="text-red-500 dark:bg-gray-900 dark:text-white">Name is require  </p>}
+                            <input type="text" placeholder="name" {...register("name", { required: true })} name='name' className=" dark:text-white input input-bordered" />
+                            {errors.name && <p className="text-red-500 dark:text-white">Name is require  </p>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -89,16 +92,16 @@ const SignUp = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Email</span>
+                                <span className="label-text text-cyan-100">Email</span>
                             </label>
-                            <input type="email" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered dark:bg-gray-800 dark:text-white" />
+                            <input type="email" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered bg-gray-800 text-white" />
                             {errors.email && <p className="text-red-500">Email is require  </p>}
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Password</span>
+                                <span className="label-text text-cyan-100">Password</span>
                             </label>
-                            <input type={show ? 'text' : 'password'} {...register("password")} name='password' placeholder="password" className="input input-bordered dark:bg-gray-800 dark:text-white" />
+                            <input type={show ? 'text' : 'password'} {...register("password")} name='password' placeholder="password" className="input input-bordered bg-gray-800 text-white" />
                             <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[530px] '>
                                 {
                                     show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
@@ -107,7 +110,7 @@ const SignUp = () => {
                             {errors.password && <p className="text-red-500">password is require  </p>}
                         </div>
                         <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Sign up" />
+                            <input className="btn bg-violet-300" type="submit" value="Sign up" />
 
                         </div>
                     </form>
