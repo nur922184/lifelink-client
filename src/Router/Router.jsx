@@ -8,6 +8,9 @@ import SignIn from '../Pages/SignIn/SignIn';
 import AboutUs from '../Pages/About Us/AboutUs';
 import Biodatas from '../Pages/Biodatas/Biodatas';
 import ContactPage from '../Pages/Contact Us/ContactPage';
+import DashboardLayout from '../Layout/DashboardLayout';
+import DashBoard from '../Pages/Dashboard/DashBoard';
+import PrivateRoute from './PrivateRoute';
 
 const Router = createBrowserRouter([
     {
@@ -37,6 +40,16 @@ const Router = createBrowserRouter([
             {
                 path: "/signin",
                 element: <SignIn></SignIn>,
+            },
+            {
+                path: "/dashboard",
+                element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+                children: [
+                    {
+                        path: "/dashboard",
+                        element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute> ,
+                    },
+                ]
             },
         ]
     }, 

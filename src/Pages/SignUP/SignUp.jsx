@@ -80,7 +80,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text text-cyan-100">Name</span>
                             </label>
-                            <input type="text" placeholder="name" {...register("name", { required: true })} name='name' className=" dark:text-white input input-bordered" />
+                            <input type="text" placeholder="name" {...register("name", { required: true })} name='name' className="dark:bg-gray-800 dark:text-white input input-bordered" />
                             {errors.name && <p className="text-red-500 dark:text-white">Name is require  </p>}
                         </div>
                         <div className="form-control">
@@ -102,7 +102,7 @@ const SignUp = () => {
                                 <span className="label-text text-cyan-100">Password</span>
                             </label>
                             <input type={show ? 'text' : 'password'} {...register("password")} name='password' placeholder="password" className="input input-bordered bg-gray-800 text-white" />
-                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[530px] '>
+                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[520px] '>
                                 {
                                     show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                 }
