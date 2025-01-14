@@ -1,6 +1,7 @@
 import React from 'react';
 import ContactImg from '../../assets/Images/contact-us.jpeg'
 import ContactDetails from './ContactDetails';
+import { Helmet } from 'react-helmet-async';
 const ContactPage = () => {
     return (
         <section
@@ -8,6 +9,9 @@ const ContactPage = () => {
                 backgroundImage: `url(${ContactImg})`,
             }}
             className="h-full py-16 bg-cover bg-center items-center">
+            <Helmet>
+                <title>Life Link | Contact Us</title>
+            </Helmet>
             {/* className="bg-gray-100 py-16 px-6 md:px-20"> */}
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Contact Form */}

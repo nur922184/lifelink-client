@@ -4,18 +4,21 @@ import SignOut from '../../Component/SignOut/SignOut';
 import useAuth from '../../Hooks/useAuth';
 import Toggle from '../../Component/Toggle/Toggle';
 import logo from '../../assets/Images/large (2).png'
+import { FaAudible, FaHome } from 'react-icons/fa';
+import { BiSolidSpa } from 'react-icons/bi';
+import { MdContacts, MdDashboard } from 'react-icons/md';
 
 const Navbar = () => {
     const { user } = useAuth();
     const NavOptions = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/Biodatas">Biodatas</NavLink></li>
-        <li><NavLink to="/AboutUs"> About Us</NavLink></li>
-        <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
+        <li><NavLink to="/"><FaHome /> Home</NavLink></li>
+        <li><NavLink to="/Biodatas"><BiSolidSpa /> Biodatas</NavLink></li>
+        <li><NavLink to="/AboutUs"> <FaAudible /> About Us</NavLink></li>
+        <li><NavLink to="/ContactUs"><MdContacts /> Contact Us</NavLink></li>
 
         {
             user ? <>
-                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+                <li><NavLink to="/dashboard"><MdDashboard /> Dashboard</NavLink></li>
                 {/* <span>{user?.displayName}</span> */}
             </> : <>
 

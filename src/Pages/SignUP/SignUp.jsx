@@ -1,6 +1,6 @@
 
 import SocialLogin from '../../Component/SocialLogin/SocialLogin';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../assets/lotte-json/Animation-singup.json";
@@ -10,10 +10,14 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 import logo from '../../assets/Images/logo-LifeLink.png'
 import SignUpImage from '../../assets/Images/desktop-wallpaper-admin-login.jpg'
+import useAxiosSecurePublic from '../../Hooks/useAxiosSecurePublic';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [show, setShow] = useState(false)
     const { crateNewUser, UpdateUserProfile } = useAuth()
+    const { axiosPublic } = useAxiosSecurePublic();
+    const navigate = useNavigate()
 
     const {
         register,
@@ -28,30 +32,39 @@ const SignUp = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                // UpdateUserProfile(data.name, data.PhotoURL)
-                //     .then(() => {
-                //         // crate user entry in the database
-                //         const userInfo = {
-                //             name: data.name,
-                //             email: data.email
-                //         }
-                //         // axiosPublic.post('/users', userInfo)
-                //         //     .then(res => {
-                //         //         if (res.data.insertedId) {
-                //         //             console.log('user added to the database')
-                //         //             reset();
-                //         //             Swal.fire({
-                //         //                 position: "top-end",
-                //         //                 icon: "success",
-                //         //                 title: "Your profile update has been success",
-                //         //                 showConfirmButton: false,
-                //         //                 timer: 1500
-                //         //             });
-                //         //             navigate("/")
-                //         //         }
-                //         //     })
-                //     })
-                //     .catch(error => console.log(error))
+                UpdateUserProfile(data.name, data.PhotoURL)
+                    .then(() => {
+                        reset();
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your profile update has been success",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate("/")
+                        // crate user entry in the database
+                        // const userInfo = {
+                        //     name: data.name,
+                        //     email: data.email
+                        // }
+                        // axiosPublic.post('/users', userInfo)
+                        //     .then(res => {
+                        //         if (res.data.insertedId) {
+                        //             console.log('user added to the database')
+                        //             reset();
+                        //             Swal.fire({
+                        //                 position: "top-end",
+                        //                 icon: "success",
+                        //                 title: "Your profile update has been success",
+                        //                 showConfirmButton: false,
+                        //                 timer: 1500
+                        //             });
+                        //             navigate("/")
+                        //         }
+                        //     })
+                    })
+                    .catch(error => console.log(error))
             })
     }
 
@@ -59,10 +72,10 @@ const SignUp = () => {
         <div style={{
             backgroundImage: `url(${SignUpImage})`,
         }}
-        
+
             className="hero bg-base-200 min-h-screen text-slate-50">
             <Helmet>
-                <title>New Project | Sign Up</title>
+                <title>Life Link | Sign Up</title>
             </Helmet>
             <div className=" hero-content justify-around flex-col lg:flex-row-reverse">
                 <div className="text-center md:w-1/2 lg:text-left">
@@ -76,42 +89,95 @@ const SignUp = () => {
                         <img className='w-36 h-24 mt-4 m-auto' src={logo} alt="" />
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                        {/* Name Field */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-cyan-100">Name</span>
                             </label>
-                            <input type="text" placeholder="name" {...register("name", { required: true })} name='name' className="dark:bg-gray-800 dark:text-white input input-bordered" />
-                            {errors.name && <p className="text-red-500 dark:text-white">Name is require  </p>}
+                            <input
+                                type="text"
+                                placeholder="Name"
+                                {...register("name", { required: "Name is required" })}
+                                className="dark:bg-gray-800 dark:text-white text-black input input-bordered"
+                            />
+                            {errors.name && (
+                                <p className="text-red-500 dark:text-white">{errors.name.message}</p>
+                            )}
                         </div>
+
+                        {/* Photo URL Field */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Photo Url</span>
+                                <span className="label-text dark:text-cyan-100">Photo URL</span>
                             </label>
-                            <input type="text" placeholder="Photo url" {...register("PhotoURL", { required: true })} className="input input-bordered dark:bg-gray-800 dark:text-white" />
-                            {errors.PhotoURL && <p className="text-red-500">Photo Url is require  </p>}
+                            <input
+                                type="text"
+                                placeholder="Photo URL"
+                                {...register("PhotoURL", { required: "Photo URL is required" })}
+                                className="input input-bordered dark:bg-gray-800 dark:text-white text-black "
+                            />
+                            {errors.PhotoURL && (
+                                <p className="text-red-500">{errors.PhotoURL.message}</p>
+                            )}
                         </div>
+
+                        {/* Email Field */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-cyan-100">Email</span>
                             </label>
-                            <input type="email" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered bg-gray-800 text-white" />
-                            {errors.email && <p className="text-red-500">Email is require  </p>}
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                {...register("email", {
+                                    required: "Email is required",
+                                    pattern: {
+                                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                        message: "Invalid email address",
+                                    },
+                                })}
+                                className="input input-bordered bg-gray-800 text-white "
+                            />
+                            {errors.email && (
+                                <p className="text-red-500">{errors.email.message}</p>
+                            )}
                         </div>
+
+                        {/* Password Field */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-cyan-100">Password</span>
                             </label>
-                            <input type={show ? 'text' : 'password'} {...register("password")} name='password' placeholder="password" className="input input-bordered bg-gray-800 text-white" />
-                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[520px] '>
-                                {
-                                    show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
-                                }
+                            <input
+                                type={show ? "text" : "password"}
+                                placeholder="Password"
+                                {...register("password", {
+                                    required: "Password is required",
+                                    minLength: {
+                                        value: 6,
+                                        message: "Password must be at least 6 characters",
+                                    },
+                                })}
+                                className="input input-bordered bg-gray-800 text-white  "
+                            />
+                            <div
+                                onClick={() => setShow(!show)}
+                                className="w-10 absolute right-6 top-[520px] text-orange-700 cursor-pointer"
+                            >
+                                {show ? <FaEyeSlash /> : <FaEye />}
                             </div>
-                            {errors.password && <p className="text-red-500">password is require  </p>}
+                            {errors.password && (
+                                <p className="text-red-500">{errors.password.message}</p>
+                            )}
                         </div>
-                        <div className="form-control mt-6">
-                            <input className="btn bg-violet-300" type="submit" value="Sign up" />
 
+                        {/* Submit Button */}
+                        <div className="form-control mt-6">
+                            <input
+                                className="btn bg-violet-300"
+                                type="submit"
+                                value="Sign up"
+                            />
                         </div>
                     </form>
                     <p className="px-6" ><small>Already have an account<Link to="/signin" className="text-blue-700 text-sm font-bold"> login now</Link> </small></p>

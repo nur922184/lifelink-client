@@ -8,12 +8,13 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 import SignINImage from '../../assets/Images/desktop-wallpaper-admin-login.jpg'
 import logo from '../../assets/Images/logo-LifeLink.png'
+import Swal from 'sweetalert2';
 const SignIn = () => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    console.log('state in the location login pages', location.state)
+    // console.log('state in the location login pages', location.state)
     const { SignIn } = useAuth()
     const handleLogin = e => {
         e.preventDefault();
@@ -25,15 +26,15 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                // Swal.fire({
-                //     position: "top-end",
-                //     icon: "success",
-                //     title: "Your Login has been success",
-                //     showConfirmButton: false,
-                //     timer: 1500
-                // });
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your Login has been success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from, { replace: true });
             })
-        navigate(from, { replace: true });
     }
 
 
@@ -43,7 +44,7 @@ const SignIn = () => {
         }}
         className="hero dark:bg-gray-900 dark:text-white bg-base-200 min-h-screen">
             <Helmet>
-                <title>New Project | Sign In</title>
+                <title>Life Link  | Sign In</title>
             </Helmet>
             <div className="hero-content  flex-col-reverse md:flex-row-reverse">
                 <div 
@@ -59,7 +60,7 @@ const SignIn = () => {
                             </label>
                             <input type="email" placeholder="email"
                                 name="email"
-                                className="input input-bordered dark:bg-gray-800 text-white" required />
+                                className="input input-bordered dark:bg-gray-800 dark:text-white text-black" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -67,8 +68,8 @@ const SignIn = () => {
                             </label>
                             <input type={show ? 'text' : 'password'}
                                 name="password"
-                                placeholder="password" className="input input-bordered dark:bg-gray-800 text-white" required />
-                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[350px] '>
+                                placeholder="password" className="input input-bordered dark:bg-gray-800 dark:text-white text-black" required />
+                            <div onClick={() => setShow(!show)} className='w-10 absolute right-6 top-[350px] text-orange-700 '>
                                 {
                                     show ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                 }
