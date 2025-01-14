@@ -7,6 +7,7 @@ import logo from '../../assets/Images/large (2).png'
 import { FaAudible, FaHome } from 'react-icons/fa';
 import { BiSolidSpa } from 'react-icons/bi';
 import { MdContacts, MdDashboard } from 'react-icons/md';
+import { SlMenu } from 'react-icons/sl';
 
 const Navbar = () => {
     const { user } = useAuth();
@@ -28,22 +29,11 @@ const Navbar = () => {
     </>
     return (
         <div>
-            <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 bg-base-100">
+            <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 bg-teal-400">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
+                           <SlMenu></SlMenu>
                         </div>
                         <ul
                             tabIndex={0}

@@ -11,6 +11,9 @@ import ContactPage from '../Pages/Contact Us/ContactPage';
 import DashboardLayout from '../Layout/DashboardLayout';
 import DashBoard from '../Pages/Dashboard/DashBoard';
 import PrivateRoute from './PrivateRoute';
+import BiodataPage from '../Pages/Biodatas/BiodataPage';
+import BiodataDetailsPage from '../Pages/Biodatas/BiodataDetailsPage';
+import CheckoutPage from '../Pages/Biodatas/CheckoutPage';
 
 const Router = createBrowserRouter([
     {
@@ -27,7 +30,17 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/Biodatas",
-                element: <Biodatas></Biodatas>,
+                element: <BiodataPage></BiodataPage>,
+            },
+            {
+                path: "/profile/:id",
+                element: <BiodataDetailsPage></BiodataDetailsPage>,
+                loader: ({params}) => fetch(`http://localhost:5000/biodata/${params.id}`)
+            },
+            {
+                path: "/checkout/:id",
+                element: <CheckoutPage></CheckoutPage>,
+                loader: ({params}) => fetch(`http://localhost:5000/biodata/${params.id}`)
             },
             {
                 path: "/ContactUs",
