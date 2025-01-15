@@ -1,11 +1,11 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LogOut = () => {
-    const { Logout} = useAuth();
-    // const navigate = useNavigate();
+    const { Logout } = useAuth();
+    const navigate = useNavigate();
     const handleLogOut = () => {
         Logout()
             .then(() => {
@@ -17,6 +17,8 @@ const LogOut = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate("/")
+
             })
             .catch(error => console.error(error));
     }

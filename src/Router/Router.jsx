@@ -12,6 +12,8 @@ import PrivateRoute from './PrivateRoute';
 import BiodataPage from '../Pages/Biodatas/BiodataPage';
 import BiodataDetailsPage from '../Pages/Biodatas/BiodataDetailsPage';
 import CheckoutPage from '../Pages/Biodatas/CheckoutPage';
+import Favourites from '../Pages/Dashboard/Favourites';
+import EditBiodata from '../Pages/Dashboard/EditBiodata';
 
 
 const Router = createBrowserRouter([
@@ -60,7 +62,12 @@ const Router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
-                
+                path:'favourites',
+                element: <Favourites></Favourites>,
+            },
+            {
+                path:'editBiodata',
+                element:<EditBiodata></EditBiodata>
             },
         ]
     },

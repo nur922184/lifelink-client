@@ -38,10 +38,14 @@ const BiodataDetailsPage = () => {
   const handleAddToFavorites = () => {
     if (user && user.email) {
       const favoritesDetails = {
-        biodataId: biodata._id,
+        biodataId: biodata.id,
+        viewId:biodata._id,
         email: user.email,
         name: biodata.name,
+        occupation: biodata.occupation,
         type: biodata.type,
+        mobileNumber: biodata.mobileNumber,
+        permanentDivision:biodata.permanentDivision,
         age: biodata.age,
         profileImage: biodata.profileImage
       }

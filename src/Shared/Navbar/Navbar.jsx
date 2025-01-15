@@ -8,12 +8,12 @@ import { FaAudible, FaHome } from 'react-icons/fa';
 import { BiSolidSpa } from 'react-icons/bi';
 import { MdContacts, MdDashboard } from 'react-icons/md';
 import { SlMenu } from 'react-icons/sl';
-import useBioDetails from '../../Hooks/useBioDetails';
-import DashboardHook from '../../Hooks/DashboardHook';
+
+
 
 const Navbar = () => {
     const { user } = useAuth();
-    const [BioDetails] = useBioDetails();
+ 
     const NavOptions = <>
         <li><NavLink to="/"><FaHome /> Home</NavLink></li>
         <li><NavLink to="/Biodatas"><BiSolidSpa /> Biodatas</NavLink></li>
@@ -22,7 +22,7 @@ const Navbar = () => {
 
         {
             user ? <>
-                <li><Link to="/dashboard"><MdDashboard /><DashboardHook></DashboardHook>{BioDetails.length} </Link></li>
+                <li><Link to="/dashboard"><MdDashboard />Dashboard </Link></li>
                 {/* <span>{user?.displayName}</span> */}
             </> : <>
 
