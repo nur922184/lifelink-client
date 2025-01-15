@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
-import aboutSectionImg from '../../assets/Images/about-us-page.png'
+import aboutSectionImg from '../../assets/Images/istockphoto.jpg'
 
 
 const AboutSection = () => {

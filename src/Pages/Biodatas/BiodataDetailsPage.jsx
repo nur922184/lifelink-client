@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart, } from "react-icons/fa";
+import { LuView } from 'react-icons/lu';
 
 const BiodataDetailsPage = () => {
   const biodata = useLoaderData();
@@ -50,49 +52,70 @@ const BiodataDetailsPage = () => {
 
   return (
     <div className="container mx-auto p-5">
-      <div className="border p-4 rounded shadow-md">
-        <img
-          src={biodata.profileImage || 'https://via.placeholder.com/150'}
-          alt="Profile"
-          className="w-full h-60 object-cover rounded mb-4"
-        />
-        <h1 className="text-2xl font-bold">{biodata.name}</h1>
-        <p>
-          <strong>Biodata Type:</strong> {biodata.type}
-        </p>
-        <p>
-          <strong>Age:</strong> {biodata.age}
-        </p>
-        <p>
-          <strong>Height:</strong> {biodata.height}
-        </p>
-        <p>
-          <strong>Weight:</strong> {biodata.weight}
-        </p>
-        <p>
-          <strong>Permanent Division:</strong> {biodata.permanentDivision}
-        </p>
-        <p>
-          <strong>Present Division:</strong> {biodata.presentDivision}
-        </p>
-        <p>
-          <strong>Occupation:</strong> {biodata.occupation}
-        </p>
-        <p>
-          <strong>Father's Name:</strong> {biodata.fathersName}
-        </p>
-        <p>
-          <strong>Mother's Name:</strong> {biodata.mothersName}
-        </p>
+      <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
+        <div className="flex flex-col md:flex-row items-center text-white">
+          {/* Left Section */}
+          <div className="flex flex-col items-center text-center p-6 md:border-r md:border-white md:w-1/2">
+            <img
+              src={biodata.profileImage}
+              alt="Profile"
+              className="w-56 h-48 object-cover rounded-xl border-4 border-white shadow-lg"
+            />
+            <h2 className="text-2xl font-bold mt-4">{biodata.name}</h2>
+            <p className="text-purple-200 text-sm">{biodata.type}</p>
+          </div>
 
+          {/* Right Section */}
+          <div className="p-6 md:w-1/2 space-y-4 mt-6">
+            <h3 className="text-xl font-bold text-center md:text-left border-b-2 border-white pb-2">
+              Profile Details
+            </h3>
+            <p>
+              <strong>Name:</strong> {biodata.name}
+            </p>
+            <p>
+              <strong>Age:</strong> {biodata.age}
+            </p>
+            <p>
+              <strong>Height:</strong> {biodata.height}
+            </p>
+            <p>
+              <strong>Weight:</strong> {biodata.weight}
+            </p>
+            <p>
+              <strong>Permanent Division:</strong> {biodata.permanentDivision}
+            </p>
+            <p>
+              <strong>Present Division:</strong> {biodata.presentDivision}
+            </p>
+            <p>
+              <strong>Occupation:</strong> {biodata.occupation}
+            </p>
+            <p>
+              <strong>Father's Name:</strong> {biodata.fathersName}
+            </p>
+            <p>
+              <strong>Mother's Name:</strong> {biodata.mothersName}
+            </p>
+            <p className="flex items-center">
+              <FaMapMarkerAlt className="mr-2 text-yellow-400" />
+              <strong>Address:</strong> {biodata.address}
+            </p>
+            <div className="mt-4 text-center">
+              <p className="text-sm">Made with ❤️ by {biodata.name}</p>
+            </div>
+          </div>
+        </div>
         {/* Contact Info */}
         {isPremium ? (
           <>
-            <p>
-              <strong>Contact Email:</strong> {biodata.contactEmail}
+            <p className="flex items-center">
+              <FaPhone className="mr-2 text-yellow-400" />
+              <strong>Mobile:</strong> {biodata.mobileNumber}
             </p>
-            <p>
-              <strong>Mobile Number:</strong> {biodata.mobileNumber}
+            <p className="flex items-center">
+              <FaEnvelope className="mr-2 text-yellow-400" />
+              <strong>Email:</strong> {biodata.contactEmail}
             </p>
           </>
         ) : (
@@ -105,7 +128,7 @@ const BiodataDetailsPage = () => {
             onClick={handleAddToFavorites}
             className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600"
           >
-            Add to Favorites
+            <FaHeart></FaHeart>
           </button>
           {!isPremium && (
             <button
@@ -119,38 +142,34 @@ const BiodataDetailsPage = () => {
       </div>
 
       {/* Similar Biodatas */}
+      
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Similar Biodatas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {similarBiodatas.map((similar) => (
-            <div
-              key={similar.id}
-              className="border p-4 rounded shadow-md"
-            >
-              <img
-                src={similar.profileImage || 'https://via.placeholder.com/150'}
-                alt="Profile"
-                className="w-full h-40 object-cover rounded mb-4"
-              />
-              <h3 className="text-lg font-bold">{similar.name}</h3>
-              <p>
-                <strong>Type:</strong> {similar.type}
-              </p>
-              <p>
-                <strong>Division:</strong> {similar.permanentDivision}
-              </p>
-              <p>
-                <strong>Age:</strong> {similar.age}
-              </p>
-              <p>
-                <strong>Occupation:</strong> {similar.occupation}
-              </p>
-              <button
-                onClick={() => navigate(`/profile/${similar.id}`)}
-                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              >
-                View Profile
-              </button>
+
+            <div className="flex items-center p-4 rounded-lg shadow-lg bg-gray-100 w-72">
+              {/* Profile Image */}
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-300">
+                <img
+                  src={similar.profileImage} // Replace this with the actual image URL
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* User Info */}
+              <div className="ml-4 flex-grow">
+                <h2 className="text-lg font-semibold text-gray-800">{similar.name}</h2>
+                <p className="text-sm text-gray-600">{similar.type}</p>
+              </div>
+
+              {/* Menu Icon */}
+              <Link to={`/profile/${similar._id}`}>
+                <button className="text-gray-600 hover:text-gray-800">
+                  <LuView size={20} />
+                </button>
+              </Link>
             </div>
           ))}
         </div>

@@ -6,7 +6,6 @@ import Error from '../Shared/Error/Error';
 import SignUp from '../Pages/SignUP/SignUp';
 import SignIn from '../Pages/SignIn/SignIn';
 import AboutUs from '../Pages/About Us/AboutUs';
-import Biodatas from '../Pages/Biodatas/Biodatas';
 import ContactPage from '../Pages/Contact Us/ContactPage';
 import DashboardLayout from '../Layout/DashboardLayout';
 import DashBoard from '../Pages/Dashboard/DashBoard';
@@ -14,6 +13,7 @@ import PrivateRoute from './PrivateRoute';
 import BiodataPage from '../Pages/Biodatas/BiodataPage';
 import BiodataDetailsPage from '../Pages/Biodatas/BiodataDetailsPage';
 import CheckoutPage from '../Pages/Biodatas/CheckoutPage';
+
 
 const Router = createBrowserRouter([
     {
@@ -34,12 +34,12 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/profile/:id",
-                element: <BiodataDetailsPage></BiodataDetailsPage>,
+                element: <PrivateRoute><BiodataDetailsPage></BiodataDetailsPage></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/biodata/${params.id}`)
             },
             {
                 path: "/checkout/:id",
-                element: <CheckoutPage></CheckoutPage>,
+                element:<PrivateRoute> <CheckoutPage></CheckoutPage></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/biodata/${params.id}`)
             },
             {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import { MdOutlineWorkspacePremium } from "react-icons/md";
+import prim from '../../assets/Images/prm.png'
 
 const PremiumProfiles = () => {
     const [profiles, setProfiles] = useState([]);
@@ -59,10 +59,13 @@ const PremiumProfiles = () => {
             {/* Premium Member Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sortedProfiles.map((profile) => (
-                    <div
-                        key={profile.id}
-                        className="border border-gray-300 rounded-lg p-4 shadow-md"
-                    >
+                    <div key={profile._id} className="w-full mx-auto bg-gradient-to-b from-purple-900 via-gray-900 to-black rounded-xl text-white shadow-lg p-6 relative">
+                        {/* PRO Badge */}
+                        <div className="absolute top-2 left-2 text-black text-xs font-bold px-2 py-1 rounded-full">
+                            <img className="w-6 h-6" src={prim} alt="" />
+                        </div>
+
+                        {/* Profile Picture */}
                         <div className="flex items-center space-x-4 mb-4">
                             {profile.profileImage ? (
                                 <img
@@ -78,29 +81,22 @@ const PremiumProfiles = () => {
                             <div>
                                 <h3 className="text-xl font-bold">{profile.name}</h3>
                                 <p className="text-gray-600">{profile.type}</p>
-                                <span className=" flex text-teal-500 bg-teal-100 items-center gap-1 ">
-                                    <MdOutlineWorkspacePremium /> {profile.status} 
-                                </span>
                             </div>
                         </div>
-                        <p className="text-gray-700">
-                            <strong>Division:</strong> {profile.permanentDivision}
-                        </p>
-                        <p className="text-gray-700">
-                            <strong>Age:</strong> {profile.age}
-                        </p>
-                        <p className="text-gray-700">
-                            <strong>Occupation:</strong> {profile.occupation}
-                        </p>
-                        <button
-                            onClick={() => handleViewProfile(profile._id)}
-                            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                        >
-                            View Profile
-                        </button>
+
+                        {/* Buttons */}
+                        <div className="flex justify-around mt-6">
+                            <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm">
+                                Premium
+                            </button>
+                            <button onClick={() => handleViewProfile(profile._id)} className="border border-purple-500 hover:bg-purple-500 hover:text-white text-purple-500 px-4 py-2 rounded-lg text-sm">
+                                View Profile
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
+
         </div>
     );
 };

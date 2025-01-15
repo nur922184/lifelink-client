@@ -9,12 +9,10 @@ const MainLayout = () => {
     const noHeaderFooter = location.pathname.includes('signin') || location.pathname.includes('signup')
     return (
         <div className='dark:bg-gray-900'>
-            { noHeaderFooter || <Navbar></Navbar>}
+            { noHeaderFooter || <div className=''><Navbar></Navbar></div>}
             <Outlet></Outlet>
            { noHeaderFooter || <Footer></Footer>}
-            {/* <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer> */}
+         
 
         </div>
     );

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import imgBiodata from '../../assets/Images/gif.gif'
+import { GiBookAura } from "react-icons/gi";
+import { HiAcademicCap } from "react-icons/hi";
 
 const BiodataPage = () => {
     const [biodatas, setBiodatas] = useState([]);
@@ -64,6 +69,9 @@ const BiodataPage = () => {
 
     return (
         <div className="mx-auto p-5 grid grid-cols-12 gap-6 py-32">
+            <Helmet>
+                <title>Life Link  | BioData</title>
+            </Helmet>
             {/* Sidebar for Filters */}
             <div className="col-span-3 border h-screen border-gray-300 p-4 rounded-lg sticky z-0 block shadow-md">
                 <h2 className="text-xl font-bold mb-4">Filter Biodatas</h2>
@@ -128,36 +136,76 @@ const BiodataPage = () => {
             </div>
 
             {/* Biodata List */}
-            <div className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+                className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredBiodatas.map((biodata) => (
-                    <div
-                        key={biodata.id}
-                        className="border border-gray-300 p-4 rounded-lg shadow-md"
-                    >
-                        <img
-                            src={biodata.profileImage || "https://via.placeholder.com/150"}
-                            alt="Profile"
-                            className="w-full h-40 object-cover rounded mb-4"
-                        />
-                        <h3 className="text-lg font-bold">{biodata.name}</h3>
-                        <p>
-                            <strong>Type:</strong> {biodata.type}
-                        </p>
-                        <p>
-                            <strong>Division:</strong> {biodata.permanentDivision}
-                        </p>
-                        <p>
-                            <strong>Age:</strong> {biodata.age}
-                        </p>
-                        <p>
-                            <strong>Occupation:</strong> {biodata.occupation}
-                        </p>
-                        <Link to={`/profile/${biodata._id}`}>
-                        <button
-                            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                        >View Profile
-                        </button>
-                        </Link>
+                    // <div
+                    //     key={biodata.id}
+                    //     className="border border-gray-300 p-4 rounded-lg shadow-md"
+                    // >
+                    //     <img
+                    //         src={biodata.profileImage || "https://via.placeholder.com/150"}
+                    //         alt="Profile"
+                    //         className="w-full h-40 object-cover rounded mb-4"
+                    //     />
+                    //     <h3 className="text-lg font-bold">{biodata.name}</h3>
+                    //     <p>
+                    //         <strong>Type:</strong> {biodata.type}
+                    //     </p>
+                    //     <p>
+                    //         <strong>Division:</strong> {biodata.permanentDivision}
+                    //     </p>
+                    //     <p>
+                    //         <strong>Age:</strong> {biodata.age}
+                    //     </p>
+                    //     <p>
+                    //         <strong>Occupation:</strong> {biodata.occupation}
+                    //     </p>
+                    //     <Link to={`/profile/${biodata._id}`}>
+                    //         <button
+                    //             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    //         >View Profile
+                    //         </button>
+                    //     </Link>
+                    // </div>
+                    <div  style={{
+                        backgroundImage: `url(${imgBiodata})`,
+                    }}
+                     key={biodata.id} className="flex w-full justify-center items-center bg-base-50">
+                        <div className="w-full bg-base-50 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+                            <div className="flex justify-center mt-4">
+                                <img
+                                    className="w-24 h-24 rounded-full border-4 border-gray-300"
+                                    src={biodata.profileImage || "https://via.placeholder.com/150"}
+                                    alt="Profile"
+                                />
+                            </div>
+                            <div className="text-center mt-4">
+                                <h2 className="text-2xl font-semibold text-gray-800">{biodata.name}</h2>
+                                <p className="text-gray-600 text-sm">{biodata.type}</p>
+                            </div>
+                            <div className="mt-4 px-6">
+                                <div className="flex items-center text-gray-600 mb-3">
+                                    <FaMapMarkerAlt className="mr-3 text-gray-500" />
+                                    <p>{biodata.permanentDivision}</p>
+                                </div>
+                                <div className="flex items-center text-gray-600 mb-3">
+                                    <p>Age :</p>
+                                    {biodata.age}
+                                </div>
+                                <div className="flex items-center text-gray-600 mb-3">
+                                    <HiAcademicCap className="mr-3 text-gray-500" />
+                                    <p>{biodata.occupation}</p>
+                                </div>
+                            </div>
+                            <div className="text-center mt-4 mb-6">
+                                <Link to={`/profile/${biodata._id}`}>
+                                    <button className="border border-purple-500 hover:bg-purple-500 hover:text-white text-purple-500 px-4 py-2 rounded-lg text-sm transition duration-300">
+                                        View Profile
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
