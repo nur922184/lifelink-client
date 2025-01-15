@@ -2,9 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart, } from "react-icons/fa";
 import { LuView } from 'react-icons/lu';
+import useAuth from '../../Hooks/useAuth';
+
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useBioDetails from '../../Hooks/useBioDetails';
 
 const BiodataDetailsPage = () => {
+  const { user } = useAuth();
   const biodata = useLoaderData();
+  const axiosSecure = useAxiosSecure();
+  const [, refetch ] =useBioDetails()
   const [similarBiodatas, setSimilarBiodatas] = useState([]);
   const navigate = useNavigate();
   const isPremium = localStorage.getItem('userType') === 'premium'; // Mock logic for premium check
@@ -27,22 +35,32 @@ const BiodataDetailsPage = () => {
   }, [biodata.type]);
 
   // Add to favorites functionality
-  const handleAddToFavorites = async () => {
-    try {
-      await fetch('http://localhost:5000/favorites', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          biodataId: biodata.id,
-          userId: localStorage.getItem('userId'),
-        }),
-      });
-      alert('Added to favorites!');
-    } catch (error) {
-      console.error('Error adding to favorites:', error);
+  const handleAddToFavorites = () => {
+    if (user && user.email) {
+      const favoritesDetails = {
+        biodataId: biodata._id,
+        email: user.email,
+        name: biodata.name,
+        type: biodata.type,
+        age: biodata.age,
+        profileImage: biodata.profileImage
+      }
+      axiosSecure.post('/favorites', favoritesDetails)
+        .then(res => {
+          console.log(res.data)
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your favorites has been added",
+              showConfirmButton: false,
+              timer: 1000
+            });
+            refetch();
+          }
+        })
     }
+
   };
 
   // Handle request contact information
@@ -142,7 +160,7 @@ const BiodataDetailsPage = () => {
       </div>
 
       {/* Similar Biodatas */}
-      
+
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Similar Biodatas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

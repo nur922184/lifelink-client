@@ -1,42 +1,23 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { NavLink } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import userImg from '../../assets/Images/userImg.png'
 
 const SignOut = () => {
 
-    const { Logout, user } = useAuth();
-
-    const handleLogOut = () => {
-        Logout()
-            .then(() => {
-                console.log('Logged out successfully');
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your Log Out has been success",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            })
-            .catch(error => console.error(error));
-    }
+    const {user } = useAuth();
 
     return (
         <div className='flex'>
-            <button onClick={handleLogOut}
-
-            >
-                Logout
-            </button>
             {/* <button onClick={handleLogOut}>logout</button> */}
             {
-                user ? <div className="rounded-full ">
+                user ? <NavLink to='/dashboard'>
+                    <div className="rounded-full ">
                     {
                         user && user?.photoURL ? (<img className="rounded-full w-10 h-10" src={user.photoURL} alt="" />) : (<img className="rounded-full w-10 h-10" src={userImg} alt="" />)
                     }
-                </div> : <NavLink to="/signin"> <button
+                </div>
+                </NavLink> : <NavLink to="/signin"> <button
                     class="group flex items-center justify-start w-9 h-9 bg-gray-700 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-32 hover:rounded-lg active:translate-x-1 active:translate-y-1"
                 >
                     <div

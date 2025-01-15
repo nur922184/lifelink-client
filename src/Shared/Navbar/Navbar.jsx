@@ -8,9 +8,12 @@ import { FaAudible, FaHome } from 'react-icons/fa';
 import { BiSolidSpa } from 'react-icons/bi';
 import { MdContacts, MdDashboard } from 'react-icons/md';
 import { SlMenu } from 'react-icons/sl';
+import useBioDetails from '../../Hooks/useBioDetails';
+import DashboardHook from '../../Hooks/DashboardHook';
 
 const Navbar = () => {
     const { user } = useAuth();
+    const [BioDetails] = useBioDetails();
     const NavOptions = <>
         <li><NavLink to="/"><FaHome /> Home</NavLink></li>
         <li><NavLink to="/Biodatas"><BiSolidSpa /> Biodatas</NavLink></li>
@@ -19,17 +22,16 @@ const Navbar = () => {
 
         {
             user ? <>
-                <li><NavLink to="/dashboard"><MdDashboard /> Dashboard</NavLink></li>
+                <li><Link to="/dashboard"><MdDashboard /><DashboardHook></DashboardHook>{BioDetails.length} </Link></li>
                 {/* <span>{user?.displayName}</span> */}
             </> : <>
 
             </>
         }
-
     </>
     return (
         <div>
-            <div className="navbar max-w-screen-xl mx-auto sticky z-10 bg-opacity-30 bg-teal-400">
+            <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 bg-teal-400">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

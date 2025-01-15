@@ -28,8 +28,8 @@ const AuthProvider = ({ children }) => {
 
     };
     const continueToGoogle = () => {
-        setLoading(true); 
-       return signInWithPopup(auth, Provider)
+        setLoading(true);
+        return signInWithPopup(auth, Provider)
     };
 
     const SignIn = (email, password) => {
@@ -37,12 +37,13 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const UpdateUserProfile = (name, photo) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
         });
     };
-    
+
 
     // useEffect(() => {
     //     const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -63,7 +64,7 @@ const AuthProvider = ({ children }) => {
     //             localStorage.removeItem('access-token')
     //             setLoading(false)
     //         }
-            
+
     //     })
     //     return () => {
     //         unSubscribe();
@@ -84,9 +85,9 @@ const AuthProvider = ({ children }) => {
         crateNewUser,
         Logout,
         SignIn,
-        continueToGoogle, 
+        continueToGoogle,
         loading,
-        UpdateUserProfile, 
+        UpdateUserProfile,
         // ForgotPassword
     }
 

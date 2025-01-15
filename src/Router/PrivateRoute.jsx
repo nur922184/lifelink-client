@@ -1,12 +1,12 @@
 
-import { Navigate,  useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import Loading from '../Shared/Loading/Loading';
 
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth()
-    const location =useLocation();
+    const location = useLocation();
     if (loading) {
         return <Loading></Loading>
     }
@@ -14,7 +14,7 @@ const PrivateRoute = ({ children }) => {
         return children;
     }
     return (
-        <Navigate state={{from: location}} to={'/signin'} replace></Navigate>
+        <Navigate state={{ from: location }} to={'/signin'} replace></Navigate>
     );
 };
 

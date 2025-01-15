@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const SocialLogin = () => {
     const { continueToGoogle } = useContext(AuthContext) ;
     const navigate =useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const handleGoogleSignIn = () => {
         continueToGoogle()
         .then(result =>{
@@ -20,7 +22,7 @@ const SocialLogin = () => {
             //     console.log(res.data)
                
             // })
-             navigate('/')
+            navigate(from, { replace: true });
         })
     }
     return (
