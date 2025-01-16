@@ -5,11 +5,12 @@ import LogOut from "../../Component/SignOut/LogOut";
 import { BiSolidSpa } from "react-icons/bi";
 import { MdContacts } from "react-icons/md";
 import useBioDetails from "../../Hooks/useBioDetails";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   // Todo  :
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   const [BioDetails] = useBioDetails()
   return (
@@ -36,64 +37,63 @@ const Sidebar = () => {
         </div>
 
         {/* Menu Links */}
-        {isAdmin ? <>
-        {/* admin menu */}
-          <nav className="mt-4 mb-4">
-            <ul className="space-y-2">
-              <li>
-                <NavLink
-                  to="/dashboard/adminDashboard"
-                  className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
-                >
-                  <FaTachometerAlt className="w-5 h-5" />
-                  <span className="ml-3">Admin Dashboard</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/manage"
-                  className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
-                >
-                  <FaClipboard className="w-5 h-5" />
-                  <span className="ml-3">Manage Users</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/allUsers"
-                  className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
-                >
-                  <FaClipboard className="w-5 h-5" />
-                  <span className="ml-3">All Users</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/ApprovedPremium"
-                  className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
-                >
-                  <FaEnvelope className="w-5 h-5" />
-                  <span className="ml-3">Approved Premium</span>
-                  <div className="badge badge-secondary ml-8">{BioDetails.length}</div>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dashboard/ApprovedContactRequest"
-                  className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
-                >
-                  <FaUser className="w-5 h-5" />
-                  <span className="ml-3">Approved Contact Request</span>
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </>
-          :
-          <>
-          {/* user menu */}
-            <nav className="mt-4 mb-4">
-              <ul className="space-y-2">
+        <nav className="mt-4 mb-4">
+          <ul className="space-y-2">
+            {isAdmin ? (
+              <>
+                {/* Admin menu */}
+                <li>
+                  <NavLink
+                    to="/dashboard/adminDashboard"
+                    className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
+                  >
+                    <FaTachometerAlt className="w-5 h-5" />
+                    <span className="ml-3">Admin Dashboard</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage"
+                    className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
+                  >
+                    <FaClipboard className="w-5 h-5" />
+                    <span className="ml-3">Manage Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/allUsers"
+                    className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
+                  >
+                    <FaClipboard className="w-5 h-5" />
+                    <span className="ml-3">All Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/ApprovedPremium"
+                    className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
+                  >
+                    <FaEnvelope className="w-5 h-5" />
+                    <span className="ml-3">Approved Premium</span>
+                    <div className="badge badge-secondary ml-8">
+                      {BioDetails?.length || 0}
+                    </div>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/ApprovedContactRequest"
+                    className="flex items-center p-2 text-gray-700 hover:bg-gray-200 rounded-lg"
+                  >
+                    <FaUser className="w-5 h-5" />
+                    <span className="ml-3">Approved Contact Request</span>
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                {/* User menu */}
                 <li>
                   <NavLink
                     to="/dashboard/editBiodata"
@@ -119,7 +119,9 @@ const Sidebar = () => {
                   >
                     <FaEnvelope className="w-5 h-5" />
                     <span className="ml-3">Favourites Biodata</span>
-                    <div className="badge badge-secondary ml-8">{BioDetails.length}</div>
+                    <div className="badge badge-secondary ml-8">
+                      {BioDetails?.length || 0}
+                    </div>
                   </NavLink>
                 </li>
                 <li>
@@ -131,10 +133,11 @@ const Sidebar = () => {
                     <span className="ml-3">My Contact Request</span>
                   </NavLink>
                 </li>
-              </ul>
-            </nav>
-          </>
-        }
+              </>
+            )}
+          </ul>
+        </nav>
+
         <hr />
         <nav className="mt-4 ">
           <ul className="space-y-2">
