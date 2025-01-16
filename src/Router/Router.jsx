@@ -14,6 +14,8 @@ import BiodataDetailsPage from '../Pages/Biodatas/BiodataDetailsPage';
 import CheckoutPage from '../Pages/Biodatas/CheckoutPage';
 import Favourites from '../Pages/Dashboard/Favourites';
 import EditBiodata from '../Pages/Dashboard/EditBiodata';
+import ManageUsers from '../Pages/Dashboard/AdminDashboard/ManageUsers';
+import AllUsers from '../Pages/Dashboard/AdminDashboard/AllUsers';
 
 
 const Router = createBrowserRouter([
@@ -68,6 +70,18 @@ const Router = createBrowserRouter([
             {
                 path:'editBiodata',
                 element:<EditBiodata></EditBiodata>
+            },
+
+
+
+            // admin related
+            {
+                path:'manage',
+                element:<ManageUsers></ManageUsers>
+            },
+            {
+                path:'allUsers',
+                element:<AllUsers></AllUsers>
             },
         ]
     },

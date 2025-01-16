@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 const SignUp = () => {
     const [show, setShow] = useState(false)
     const { crateNewUser, UpdateUserProfile } = useAuth()
-    const { axiosPublic } = useAxiosSecurePublic();
+    const axiosPublic = useAxiosSecurePublic();
     const navigate = useNavigate()
 
     const {
@@ -34,35 +34,26 @@ const SignUp = () => {
                 console.log(loggedUser);
                 UpdateUserProfile(data.name, data.PhotoURL)
                     .then(() => {
-                        reset();
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Your profile update has been success",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate("/")
                         // crate user entry in the database
-                        // const userInfo = {
-                        //     name: data.name,
-                        //     email: data.email
-                        // }
-                        // axiosPublic.post('/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             console.log('user added to the database')
-                        //             reset();
-                        //             Swal.fire({
-                        //                 position: "top-end",
-                        //                 icon: "success",
-                        //                 title: "Your profile update has been success",
-                        //                 showConfirmButton: false,
-                        //                 timer: 1500
-                        //             });
-                        //             navigate("/")
-                        //         }
-                        //     })
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user added to the database')
+                                    reset();
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Your profile update has been success",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate("/")
+                                }
+                            })
                     })
                     .catch(error => console.log(error))
             })
