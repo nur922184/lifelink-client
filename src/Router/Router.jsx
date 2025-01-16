@@ -13,9 +13,11 @@ import BiodataPage from '../Pages/Biodatas/BiodataPage';
 import BiodataDetailsPage from '../Pages/Biodatas/BiodataDetailsPage';
 import CheckoutPage from '../Pages/Biodatas/CheckoutPage';
 import Favourites from '../Pages/Dashboard/Favourites';
-import EditBiodata from '../Pages/Dashboard/EditBiodata';
 import ManageUsers from '../Pages/Dashboard/AdminDashboard/ManageUsers';
 import AllUsers from '../Pages/Dashboard/AdminDashboard/AllUsers';
+import EditBiodata from '../Pages/Dashboard/UsesDashboard/EditBiodata';
+import BiodataForm from '../Pages/Dashboard/UsesDashboard/BiodataForm';
+
 
 
 const Router = createBrowserRouter([
@@ -70,6 +72,11 @@ const Router = createBrowserRouter([
             {
                 path:'editBiodata',
                 element:<EditBiodata></EditBiodata>
+            },
+            {
+                path:'viewBiodata',
+                element:<BiodataForm></BiodataForm>
+             
             },
 
 

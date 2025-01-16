@@ -5,23 +5,26 @@ import { useNavigate } from 'react-router-dom';
 import { FaSignInAlt } from 'react-icons/fa';
 
 const LogOut = () => {
-    const { Logout } = useAuth();
+    const { Logout, setLoading } = useAuth(); // setLoggingOut ফ্ল্যাগ ব্যবহার
     const navigate = useNavigate();
+
     const handleLogOut = () => {
+        setLoading(true); // লগআউট প্রসেস শুরু হচ্ছে, ফ্ল্যাগ সেট করা
         Logout()
             .then(() => {
-                console.log('Logged out successfully');
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your Log Out has been success",
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'You have successfully logged out',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
                 });
-                navigate("/")
-
+                navigate('/'); // হোম পেজে নেভিগেট করা
             })
-            .catch(error => console.error(error));
+            .catch((error) => console.error('Logout failed:', error))
+            .finally(() => {
+                setLoading(false); // লগআউট প্রসেস শেষ
+            });
     }
     return (
         <div>

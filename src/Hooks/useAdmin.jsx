@@ -10,9 +10,9 @@ const useAdmin = () => {
         queryKey: [user?.email, "isAdmin"],
         enabled: !loading && !!user?.email, // Ensure user.email exists and loading is false
         queryFn: async () => {
-            console.log("Checking if user is admin:", user);
+            // console.log("Checking if user is admin:", user);
             const res = await axiosSecure.get(`/users/admin/${user.email}`);
-            console.log("Admin check response:", res.data);
+            // console.log("Admin check response:", res.data);
             return res.data?.admin || false; // Return false if no admin data
         },
     });

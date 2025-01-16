@@ -41,10 +41,10 @@ const Favourites = () => {
                 Favourites: {BioDetails.length}
             </h2>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto h-screen">
                 <table className="table-auto w-full border border-gray-300">
                     <thead>
-                        <tr className="bg-gray-200 text-left">
+                        <tr className="bg-gray-200 dark:bg-slate-600 dark:text-white text-left">
                             <th className="px-4 py-2">Name</th>
                             <th className="px-4 py-2">Biodata Id</th>
                             <th className="px-4 py-2">Permanent Address</th>
@@ -54,7 +54,7 @@ const Favourites = () => {
                     </thead>
                     <tbody>
                         {BioDetails.map((bio) => (
-                            <tr key={bio._id} className="hover:bg-gray-100">
+                            <tr key={bio._id} className="">
                                 <td className="border px-4 py-2">{bio.name}</td>
                                 <td className="border px-4 py-2">{bio.biodataId}</td>
                                 <td className="border px-4 py-2">

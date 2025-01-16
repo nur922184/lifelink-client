@@ -2,11 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../Pages/Dashboard/Sidebar';
-import AdminC from '../Pages/Dashboard/DeshBoardComponent/AdminC';
+// import AdminC from '../Pages/Dashboard/DeshBoardComponent/AdminC';
 
 const DashboardLayout = () => {
     return (
-        <main className=''>
+        <main className='dark:bg-gray-900 dark:text-white'>
             <Helmet>
                 <title>Life Link  | Dashboard</title>
             </Helmet>

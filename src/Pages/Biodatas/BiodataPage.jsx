@@ -73,14 +73,14 @@ const BiodataPage = () => {
                 <title>Life Link  | BioData</title>
             </Helmet>
             {/* Sidebar for Filters */}
-            <div className="col-span-3 border h-screen border-gray-300 p-4 rounded-lg sticky z-0 block shadow-md">
+            <div className="col-span-3 border h-screen dark:text-white border-gray-300 p-4 rounded-lg sticky z-0 block shadow-md">
                 <h2 className="text-xl font-bold mb-4">Filter Biodatas</h2>
                 <div className="mb-4">
                     <label className="block font-medium mb-2">Age Range</label>
                     <input
                         type="number"
                         placeholder="Min"
-                        className="border p-2 w-full mb-2"
+                        className="border p-2 w-full mb-2 dark:text-black"
                         value={filters.ageRange[0]}
                         onChange={(e) =>
                             handleFilterChange("ageRange", [
@@ -92,7 +92,7 @@ const BiodataPage = () => {
                     <input
                         type="number"
                         placeholder="Max"
-                        className="border p-2 w-full"
+                        className="border p-2 w-full dark:text-black"
                         value={filters.ageRange[1]}
                         onChange={(e) =>
                             handleFilterChange("ageRange", [
@@ -106,7 +106,7 @@ const BiodataPage = () => {
                 <div className="mb-4">
                     <label className="block font-medium mb-2">Biodata Type</label>
                     <select
-                        className="border p-2 w-full"
+                        className="border p-2 w-full dark:text-black"
                         value={filters.biodataType}
                         onChange={(e) => handleFilterChange("biodataType", e.target.value)}
                     >
@@ -119,7 +119,7 @@ const BiodataPage = () => {
                 <div className="mb-4">
                     <label className="block font-medium mb-2">Division</label>
                     <select
-                        className="border p-2 w-full"
+                        className="border p-2 w-full dark:text-black"
                         value={filters.division}
                         onChange={(e) => handleFilterChange("division", e.target.value)}
                     >
