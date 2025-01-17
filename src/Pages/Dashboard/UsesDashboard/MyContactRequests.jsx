@@ -1,108 +1,120 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const MyContactRequests = () => {
-  const [contactRequests, setContactRequests] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [payments, setPayments] = useState([]);
+    const { user } = useAuth();
+    const userEmail = user.email;
 
-  // Fetch contact requests on component mount
-  useEffect(() => {
-    const fetchContactRequests = async () => {
+    useEffect(() => {
+        const fetchPayments = async () => {
+            try {
+                // যদি userEmail থাকে, তাহলে কুয়েরি প্যারামিটার দিয়ে পাঠাব
+                const response = await fetch(
+                    `http://localhost:5000/payments${userEmail ? `?email=${userEmail}` : ''}`
+                );
+                const data = await response.json();
+                setPayments(data);
+            } catch (error) {
+                console.error('Failed to fetch payments:', error);
+            }
+        };
+
+        fetchPayments();
+    }, [userEmail]);
+
+
+
+const handleDelete = async (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "Cancel",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
       try {
-        const token = localStorage.getItem("accessToken"); // Adjust based on your token storage
-        const response = await axios.get("http://localhost:5000/contact-requests", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        const response = await fetch(`http://localhost:5000/payments/${id}`, {
+          method: "DELETE",
         });
-        setContactRequests(response.data);
-      } catch (error) {
-        console.error("Error fetching contact requests:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+        const result = await response.json();
 
-    fetchContactRequests();
-  }, []);
-
-  // Handle delete request
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this contact request?")) {
-      try {
-        const token = localStorage.getItem("accessToken");
-        await axios.delete(`http://localhost:5000/contact-requests/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setContactRequests((prev) => prev.filter((request) => request._id !== id));
-        alert("Contact request deleted successfully!");
+        if (result.success) {
+          Swal.fire("Deleted!", "Your data has been deleted.", "success");
+          // লিস্ট থেকে ডেটা সরিয়ে আপডেট করুন
+          setPayments((prevPayments) =>
+            prevPayments.filter((payment) => payment._id !== id)
+          );
+        } else {
+          Swal.fire("Failed!", result.message, "error");
+        }
       } catch (error) {
-        console.error("Error deleting contact request:", error);
-        alert("Failed to delete contact request.");
+        console.error("Error deleting data:", error);
+        Swal.fire("Error!", "Something went wrong.", "error");
       }
     }
-  };
+  });
+};
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
-  return (
-    <div className="container mx-auto my-8">
-      <h1 className="text-2xl font-bold mb-4">My Contact Requests</h1>
-      {contactRequests.length === 0 ? (
-        <p>No contact requests found.</p>
-      ) : (
-        <table className="min-w-full border-collapse border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">Name</th>
-              <th className="border border-gray-300 px-4 py-2">Biodata ID</th>
-              <th className="border border-gray-300 px-4 py-2">Status</th>
-              <th className="border border-gray-300 px-4 py-2">Mobile No</th>
-              <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contactRequests.map((request) => (
-              <tr key={request._id}>
-                <td className="border border-gray-300 px-4 py-2">{request.name}</td>
-                <td className="border border-gray-300 px-4 py-2">{request.biodataId}</td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <span
-                    className={`px-2 py-1 rounded text-white ${
-                      request.status === "Approved"
-                        ? "bg-green-500"
-                        : "bg-yellow-500"
-                    }`}
-                  >
-                    {request.status}
-                  </span>
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {request.status === "Approved" ? request.mobileNo : "N/A"}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {request.status === "Approved" ? request.email : "N/A"}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <button
-                    onClick={() => handleDelete(request._id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
+    return (
+        <div className="container mx-auto p-5">
+            <h1 className="text-2xl font-bold mb-4">Payment History</h1>
+            {payments.length > 0 ? (
+                <table className="min-w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr>
+                            <th className="border border-gray-300 px-4 py-2">Name</th>
+                            <th className="border border-gray-300 px-4 py-2">Biodata ID</th>
+                            <th className="border border-gray-300 px-4 py-2">Status</th>
+                            <th className="border border-gray-300 px-4 py-2">Mobile No</th>
+                            <th className="border border-gray-300 px-4 py-2">Email</th>
+                            <th className="border border-gray-300 px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {payments.map((request) => (
+                            <tr key={request._id}>
+                                <td className="border border-gray-300 px-4 py-2">{request.name}</td>
+                                <td className="border border-gray-300 px-4 py-2">{request.biodataId}</td>
+                                <td className="border border-gray-300 px-4 py-2">
+                                    <span
+                                        className={`px-2 py-1 rounded text-white ${request.status === "Approved"
+                                                ? "bg-green-500"
+                                                : "bg-yellow-500"
+                                            }`}
+                                    >
+                                        {request.status}
+                                    </span>
+                                </td>
+                                <td className="border border-gray-300 px-4 py-2">
+                                    {request.status === "Approved" ? request.mobile : "N/A"}
+                                </td>
+                                <td className="border border-gray-300 px-4 py-2">
+                                    {request.status === "Approved" ? request.postEmail : "N/A"}
+                                </td>
+                                <td className="border border-gray-300 px-4 py-2">
+                                    <button
+                                        onClick={() => handleDelete(request._id)}
+                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p>No payments found.</p>
+            )}
+        </div>
+    );
 };
 
 export default MyContactRequests;

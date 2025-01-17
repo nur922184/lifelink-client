@@ -21,6 +21,8 @@ import BiodataFetcher from '../Pages/Dashboard/UsesDashboard/BiodataFetcher';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import MyContactRequests from '../Pages/Dashboard/UsesDashboard/MyContactRequests';
 import EditBiodaata from '../Pages/Dashboard/UsesDashboard/EditBiodaata';
+import AdminDahoard from '../Pages/Dashboard/AdminDashboard/AdminDahoard';
+import ApprovedContact from '../Pages/Dashboard/AdminDashboard/ApprovedContact';
 
 
 
@@ -49,7 +51,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/checkout/:id",
-                element: <PrivateRoute> <CheckoutPage></CheckoutPage></PrivateRoute>,
+                element: <PrivateRoute><CheckoutPage></CheckoutPage></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`)
             },
             {
@@ -76,29 +78,29 @@ const Router = createBrowserRouter([
             },
             {
                 path:'favourites',
-                element: <Favourites></Favourites>,
+                element: <PrivateRoute><Favourites></Favourites></PrivateRoute>,
             },
             {
                 path:'editBiodata',
-                element:<EditBiodaata></EditBiodaata>
+                element:<PrivateRoute><EditBiodaata></EditBiodaata></PrivateRoute>
             },
             {
                 path:'viewBiodata',
-                element:<BiodataFetcher></BiodataFetcher>
+                element:<PrivateRoute><BiodataFetcher></BiodataFetcher></PrivateRoute>
                 // element:<ViewBiodata></ViewBiodata>
             },
             {
                 path:'addbiodata',
-                element:<BiodataForm></BiodataForm>
+                element:<PrivateRoute><BiodataForm></BiodataForm></PrivateRoute>
             },
             {
                 path:'view',
-                element:<MyContactRequests></MyContactRequests>
+                element:<PrivateRoute><MyContactRequests></MyContactRequests></PrivateRoute>
              
             },
             {
                 path:'edit-profile/:id',
-                element:<EditBiodata></EditBiodata>, 
+                element:<PrivateRoute><EditBiodata></EditBiodata> </PrivateRoute>,
                 loader:({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`)
              
             },
@@ -111,8 +113,16 @@ const Router = createBrowserRouter([
                 element:<ManageUsers></ManageUsers>
             },
             {
+                path:'/dashboard/adminDashboard',
+                element:<AdminDahoard></AdminDahoard>
+            },
+            {
                 path:'allUsers',
                 element:<AllUsers></AllUsers>
+            },
+            {
+                path:'ApprovedContactRequest',
+                element:<ApprovedContact></ApprovedContact>
             },
         ]
     },
