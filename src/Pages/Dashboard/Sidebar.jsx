@@ -126,7 +126,7 @@ const Sidebar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/users"
+                    to="/dashboard/view"
                     className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
                   >
                     <FaUser className="w-5 h-5" />

@@ -17,6 +17,8 @@ import ManageUsers from '../Pages/Dashboard/AdminDashboard/ManageUsers';
 import AllUsers from '../Pages/Dashboard/AdminDashboard/AllUsers';
 import EditBiodata from '../Pages/Dashboard/UsesDashboard/EditBiodata';
 import BiodataForm from '../Pages/Dashboard/UsesDashboard/BiodataForm';
+import BiodataFetcher from '../Pages/Dashboard/UsesDashboard/BiodataFetcher';
+import ViewBiodata from '../Pages/Dashboard/UsesDashboard/ViewBiodata';
 
 
 
@@ -71,11 +73,24 @@ const Router = createBrowserRouter([
             },
             {
                 path:'editBiodata',
-                element:<EditBiodata></EditBiodata>
+                element:<BiodataFetcher></BiodataFetcher>
             },
             {
-                path:'viewBiodata',
+                path:'addbiodata',
                 element:<BiodataForm></BiodataForm>
+                // element:<ViewBiodata></ViewBiodata>
+                
+             
+            },
+            {
+                path:'view',
+                element:<BiodataFetcher></BiodataFetcher>
+             
+            },
+            {
+                path:'edit-profile/:id',
+                element:<EditBiodata></EditBiodata>, 
+                loader:({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`)
              
             },
 
