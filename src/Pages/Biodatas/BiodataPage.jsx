@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate } from "react-router-dom";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { Link, } from "react-router-dom";
+import {  FaMapMarkerAlt } from "react-icons/fa";
 import imgBiodata from '../../assets/Images/gif.gif'
 import { GiBookAura } from "react-icons/gi";
 import { HiAcademicCap } from "react-icons/hi";
@@ -201,7 +201,7 @@ const BiodataPage = () => {
                             </div>
                             <div className="text-center mt-4 mb-6">
                                 <Link to={`/profile/${biodata._id}`}>
-                                  <ViewProfile></ViewProfile>
+                                  <ViewProfile id="custom-id"></ViewProfile>
                                 </Link>
                             </div>
                         </div>

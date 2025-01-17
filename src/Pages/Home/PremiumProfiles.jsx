@@ -65,7 +65,7 @@ const PremiumProfiles = () => {
                         <div className="absolute top-2 left-2 text-black text-xs font-bold px-2 py-1 rounded-full">
                             <img className="w-6 h-6" src={prim} alt="" />
                         </div>
-
+                    
                         {/* Profile Picture */}
                         <div className="flex items-center space-x-4 mb-4">
                             {profile.profileImage ? (
@@ -91,14 +91,13 @@ const PremiumProfiles = () => {
                                 Premium
                             </button>
 
-                            <button onClick={() => handleViewProfile(profile._id)} >
+                            <div onClick={() => handleViewProfile(profile._id)} >
                                 <ViewProfile></ViewProfile>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

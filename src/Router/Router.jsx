@@ -19,6 +19,8 @@ import EditBiodata from '../Pages/Dashboard/UsesDashboard/EditBiodata';
 import BiodataForm from '../Pages/Dashboard/UsesDashboard/BiodataForm';
 import BiodataFetcher from '../Pages/Dashboard/UsesDashboard/BiodataFetcher';
 import Dashboard from '../Pages/Dashboard/Dashboard';
+import MyContactRequests from '../Pages/Dashboard/UsesDashboard/MyContactRequests';
+import EditBiodaata from '../Pages/Dashboard/UsesDashboard/EditBiodaata';
 
 
 
@@ -78,16 +80,20 @@ const Router = createBrowserRouter([
             },
             {
                 path:'editBiodata',
+                element:<EditBiodaata></EditBiodaata>
+            },
+            {
+                path:'viewBiodata',
                 element:<BiodataFetcher></BiodataFetcher>
+                // element:<ViewBiodata></ViewBiodata>
             },
             {
                 path:'addbiodata',
                 element:<BiodataForm></BiodataForm>
-                // element:<ViewBiodata></ViewBiodata>
             },
             {
                 path:'view',
-                element:<p>my ApprovedContactRequest</p>
+                element:<MyContactRequests></MyContactRequests>
              
             },
             {

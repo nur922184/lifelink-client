@@ -27,38 +27,54 @@ const SignUp = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data)
+        console.log(data);
         crateNewUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 UpdateUserProfile(data.name, data.PhotoURL)
                     .then(() => {
-                        // crate user entry in the database
+                        // Create user entry in the database
                         const userInfo = {
                             name: data.name,
                             email: data.email
-                        }
+                        };
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
-                                    console.log('user added to the database')
+                                    console.log('User added to the database');
                                     reset();
                                     Swal.fire({
                                         position: "top-end",
                                         icon: "success",
-                                        title: "Your profile update has been success",
+                                        title: "Your profile has been successfully updated!",
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    navigate("/")
+                                    navigate("/");
                                 }
-                            })
+                            });
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => console.error(error));
             })
-    }
-
+            .catch(error => {
+                console.error(error.message);
+                if (error.code === 'auth/email-already-in-use') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email Already Exists',
+                        text: 'This email is already registered. Please use another email or log in.',
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error Occurred',
+                        text: error.message,
+                    });
+                }
+            });
+    };
+    
     return (
         <div style={{
             backgroundImage: `url(${SignUpImage})`,

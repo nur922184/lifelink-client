@@ -16,47 +16,89 @@ const ManageUsers = () => {
         }
     });
     const handleMakeAdmin = (id) => {
-        axiosSecure.patch(`/users/admin/${id}`)
-            .then((res) => {
-                if (res.data.modifiedCount > 0) {
-                    refetch(); // Refetch users to update UI
-                    Swal.fire({
-                        title: "Success!",
-                        text: "The user has been granted admin privileges.",
-                        icon: "success"
-                    });
-                }
-            })
-            .catch((err) => {
-                console.error("Error updating admin role:", err);
-                Swal.fire({
-                    title: "Error!",
-                    text: "Failed to update admin role.",
-                    icon: "error"
-                });
+        if (!id) {
+            Swal.fire({
+                title: "Error!",
+                text: "Invalid user ID.",
+                icon: "error",
             });
+            return;
+        }
+    
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to grant admin privileges to this user?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, make admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/admin/${id}`)
+                    .then((res) => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch(); // Refetch users to update UI
+                            Swal.fire({
+                                title: "Success!",
+                                text: "The user has been granted admin privileges.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch((err) => {
+                        console.error("Error updating admin role:", err);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to update admin role.",
+                            icon: "error"
+                        });
+                    });
+            }
+        });
     };
 
     const handleMakePremium = (id) => {
-        axiosSecure.patch(`/users/premium/${id}`)
-            .then((res) => {
-                if (res.data.modifiedCount > 0) {
-                    refetch(); // Refetch users to update UI
-                    Swal.fire({
-                        title: "Success!",
-                        text: "The user has been granted premium privileges.",
-                        icon: "success"
-                    });
-                }
-            })
-            .catch((err) => {
-                console.error("Error updating premium role:", err);
-                Swal.fire({
-                    title: "Error!",
-                    text: "Failed to update premium role.",
-                    icon: "error"
-                });
+        if (!id) {
+            Swal.fire({
+                title: "Error!",
+                text: "Invalid user ID.",
+                icon: "error",
             });
+            return;
+        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to grant premium privileges to this user?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, make premium!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/premium/${id}`)
+                    .then((res) => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch(); // Refetch users to update UI
+                            Swal.fire({
+                                title: "Success!",
+                                text: "The user has been granted premium privileges.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch((err) => {
+                        console.error("Error updating premium role:", err);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to update premium role.",
+                            icon: "error"
+                        });
+                    });
+            }
+        });
     };
 
     if (isLoading) {

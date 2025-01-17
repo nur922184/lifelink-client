@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import useAuth from '../../../Hooks/useAuth';
+
 import NoFilesFound from './NoFilesFound';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+import NoFound from './NoFound';
 
-const BiodataFetcher = () => {
+const EditBiodaata = () => {
     const { user } = useAuth(); // `user` থেকে email পাওয়া যাচ্ছে।
     const [biodata, setBiodata] = useState([]);
 
@@ -67,11 +69,11 @@ const BiodataFetcher = () => {
                                     </div>
 
                                     <div className="mt-8 flex justify-center sm:justify-start">
-                                        <Link to={`/checkout/${bio._id}`}>
+                                        <Link to={`/dashboard/edit-profile/${bio._id}`}>
                                             <button
                                                 className="btn btn-secondary w-40 bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600"
                                             >
-                                                Premium Now
+                                                Edit
                                             </button>
                                         </Link>
                                     </div>
@@ -84,11 +86,11 @@ const BiodataFetcher = () => {
             ) : (
                 <div className="flex flex-col items-center justify-center h-screen">
 
-                    <NoFilesFound></NoFilesFound>
+                  <NoFound></NoFound>
                 </div>
             )}
         </div>
     );
 };
 
-export default BiodataFetcher;
+export default EditBiodaata;

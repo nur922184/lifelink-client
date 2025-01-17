@@ -176,7 +176,7 @@ const BiodataDetailsPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {similarBiodatas.map((similar) => (
 
-            <div className="flex items-center p-4 rounded-lg shadow-lg bg-gray-100 w-72">
+            <div key={similar._id} className="flex items-center p-4 rounded-lg shadow-lg bg-gray-100 w-72">
               {/* Profile Image */}
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-300">
                 <img
@@ -194,9 +194,9 @@ const BiodataDetailsPage = () => {
 
               {/* Menu Icon */}
               <Link to={`/profile/${similar._id}`}>
-                <button className=''>
+                <div className=''>
                   <ViewProfile></ViewProfile>
-                </button>
+                </div>
               </Link>
             </div>
           ))}

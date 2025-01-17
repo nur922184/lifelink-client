@@ -21,21 +21,32 @@ const SignIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+    
         SignIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                console.log(user);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your Login has been success",
+                    title: "Your Login has been successful!",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
                 });
                 navigate(from, { replace: true });
             })
-    }
+            .catch(error => {
+                console.error(error.message);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Login Failed",
+                    text: "Incorrect email or password. Please try again.",
+                    showConfirmButton: true,
+                });
+            });
+    };
+    
 
 
     return (
