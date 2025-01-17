@@ -18,7 +18,8 @@ import AllUsers from '../Pages/Dashboard/AdminDashboard/AllUsers';
 import EditBiodata from '../Pages/Dashboard/UsesDashboard/EditBiodata';
 import BiodataForm from '../Pages/Dashboard/UsesDashboard/BiodataForm';
 import BiodataFetcher from '../Pages/Dashboard/UsesDashboard/BiodataFetcher';
-import ViewBiodata from '../Pages/Dashboard/UsesDashboard/ViewBiodata';
+import Dashboard from '../Pages/Dashboard/Dashboard';
+
 
 
 
@@ -68,6 +69,10 @@ const Router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
+                path:'/dashboard',
+                element: <Dashboard></Dashboard>,
+            },
+            {
                 path:'favourites',
                 element: <Favourites></Favourites>,
             },
@@ -79,12 +84,10 @@ const Router = createBrowserRouter([
                 path:'addbiodata',
                 element:<BiodataForm></BiodataForm>
                 // element:<ViewBiodata></ViewBiodata>
-                
-             
             },
             {
                 path:'view',
-                element:<BiodataFetcher></BiodataFetcher>
+                element:<p>my ApprovedContactRequest</p>
              
             },
             {

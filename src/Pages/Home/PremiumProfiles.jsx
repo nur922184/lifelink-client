@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import prim from '../../assets/Images/prm.png'
+import ViewProfile from "../../Component/BTN/ViewProfile";
 
 const PremiumProfiles = () => {
     const [profiles, setProfiles] = useState([]);
@@ -89,8 +90,9 @@ const PremiumProfiles = () => {
                             <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm">
                                 Premium
                             </button>
-                            <button onClick={() => handleViewProfile(profile._id)} className="border border-purple-500 hover:bg-purple-500 hover:text-white text-purple-500 px-4 py-2 rounded-lg text-sm">
-                                View Profile
+
+                            <button onClick={() => handleViewProfile(profile._id)} >
+                                <ViewProfile></ViewProfile>
                             </button>
                         </div>
                     </div>

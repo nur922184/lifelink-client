@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart, } from "react-icons/fa";
-import { LuView } from 'react-icons/lu';
+
 import useAuth from '../../Hooks/useAuth';
 
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useBioDetails from '../../Hooks/useBioDetails';
+import ViewProfile from '../../Component/BTN/ViewProfile';
 
 const BiodataDetailsPage = () => {
   const { user } = useAuth();
   const biodata = useLoaderData();
   const axiosSecure = useAxiosSecure();
-  const [, refetch ] =useBioDetails()
+  const [, refetch] = useBioDetails()
   const [similarBiodatas, setSimilarBiodatas] = useState([]);
   const navigate = useNavigate();
-  const isPremium = localStorage.getItem('userType') === 'premium'; // Mock logic for premium check
+  // Mock logic for premium check
 
   // Fetch similar biodatas (maximum 3)
   useEffect(() => {
@@ -39,13 +40,13 @@ const BiodataDetailsPage = () => {
     if (user && user.email) {
       const favoritesDetails = {
         biodataId: biodata.id,
-        viewId:biodata._id,
+        viewId: biodata._id,
         email: user.email,
         name: biodata.name,
         occupation: biodata.occupation,
         type: biodata.type,
         mobileNumber: biodata.mobileNumber,
-        permanentDivision:biodata.permanentDivision,
+        permanentDivision: biodata.permanentDivision,
         age: biodata.age,
         profileImage: biodata.profileImage
       }
@@ -69,7 +70,7 @@ const BiodataDetailsPage = () => {
 
   // Handle request contact information
   const handleRequestContact = () => {
-    navigate(`/checkout/${biodata.id}`);
+    navigate(`/checkout/${biodata._id}`);
   };
 
   return (
@@ -129,7 +130,14 @@ const BiodataDetailsPage = () => {
           </div>
         </div>
         {/* Contact Info */}
-        {isPremium ? (
+        {biodata.status === "Premium" ? (
+          <>
+            <p className="text-red-500">
+              Contact Information is visible to premium members only.
+            </p>
+
+          </>
+        ) : (
           <>
             <p className="flex items-center">
               <FaPhone className="mr-2 text-yellow-400" />
@@ -140,9 +148,8 @@ const BiodataDetailsPage = () => {
               <strong>Email:</strong> {biodata.contactEmail}
             </p>
           </>
-        ) : (
-          <p className="text-red-500">Contact Information is visible to premium members only.</p>
         )}
+
 
         {/* Actions */}
         <div className="mt-4">
@@ -152,14 +159,13 @@ const BiodataDetailsPage = () => {
           >
             <FaHeart></FaHeart>
           </button>
-          {!isPremium && (
-            <button
-              onClick={handleRequestContact}
-              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-            >
-              Request Contact Information
-            </button>
-          )}
+          <button
+            onClick={handleRequestContact}
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          >
+            Request Contact Information
+          </button>
+
         </div>
       </div>
 
@@ -188,8 +194,8 @@ const BiodataDetailsPage = () => {
 
               {/* Menu Icon */}
               <Link to={`/profile/${similar._id}`}>
-                <button className="text-gray-600 hover:text-gray-800">
-                  <LuView size={20} />
+                <button className=''>
+                  <ViewProfile></ViewProfile>
                 </button>
               </Link>
             </div>

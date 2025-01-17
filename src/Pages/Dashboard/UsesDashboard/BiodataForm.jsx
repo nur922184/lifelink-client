@@ -5,6 +5,7 @@ import useAxiosSecurePublic from "../../../Hooks/useAxiosSecurePublic";
 import useFetchBiodata from "../../../Hooks/useFetchBiodata";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -14,12 +15,13 @@ const BiodataForm = () => {
     const axiosPublic = useAxiosSecurePublic();
     const axiosSecure = useAxiosSecure()
     const { BioData } = useFetchBiodata()
+   
+    const navigate = useNavigate();
     const BioID = (BioData.length + 1);
-    const { user } = useAuth()
+    const { user } = useAuth();
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
 
@@ -72,6 +74,7 @@ const BiodataForm = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    navigate ('/dashboard/editBiodata')
                 }
 
             }

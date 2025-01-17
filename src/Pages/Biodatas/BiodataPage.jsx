@@ -5,6 +5,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import imgBiodata from '../../assets/Images/gif.gif'
 import { GiBookAura } from "react-icons/gi";
 import { HiAcademicCap } from "react-icons/hi";
+import ViewProfile from "../../Component/BTN/ViewProfile";
 
 const BiodataPage = () => {
     const [biodatas, setBiodatas] = useState([]);
@@ -200,9 +201,7 @@ const BiodataPage = () => {
                             </div>
                             <div className="text-center mt-4 mb-6">
                                 <Link to={`/profile/${biodata._id}`}>
-                                    <button className="border border-purple-500 hover:bg-purple-500 hover:text-white text-purple-500 px-4 py-2 rounded-lg text-sm transition duration-300">
-                                        View Profile
-                                    </button>
+                                  <ViewProfile></ViewProfile>
                                 </Link>
                             </div>
                         </div>

@@ -324,7 +324,7 @@ const EditBiodata = () => {
                     type="submit"
                     className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm sm:text-base"
                 >
-                    Submit
+                    Update 
                 </button>
             </div>
         </form>
