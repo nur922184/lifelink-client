@@ -15,7 +15,7 @@ const useDashboardData = () => {
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
-                const response = await fetch("http://localhost:5000/dashboard");
+                const response = await fetch("https://final-project-server-tau-jade.vercel.app/dashboard");
                 if (!response.ok) {
                     throw new Error("Failed to fetch dashboard data");
                 }

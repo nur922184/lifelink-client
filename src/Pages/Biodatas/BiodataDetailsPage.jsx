@@ -23,7 +23,7 @@ const BiodataDetailsPage = () => {
     const fetchSimilarBiodatas = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/biodata?type=${biodata.type}&_limit=3`
+          `https://final-project-server-tau-jade.vercel.app/biodata?type=${biodata.type}&_limit=3`
         );
         const data = await response.json();
         setSimilarBiodatas(data);

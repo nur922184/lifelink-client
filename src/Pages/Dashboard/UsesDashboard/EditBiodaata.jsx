@@ -15,7 +15,7 @@ const EditBiodaata = () => {
             // সার্ভার থেকে ফিল্টার করা ডাটা ফেচ করুন
             setLoading(true); // Set loading to true before the fetch
             axios
-                .get(`http://localhost:5000/biodata?email=${user.email}`)
+                .get(`https://final-project-server-tau-jade.vercel.app/biodata?email=${user.email}`)
                 .then(response => {
                     setBiodata(response.data);
                     setLoading(false); // Set loading to false after data is fetched

@@ -22,7 +22,7 @@ const BiodataPage = () => {
     useEffect(() => {
         const fetchBiodatas = async () => {
             try {
-                const response = await fetch("http://localhost:5000/biodata");
+                const response = await fetch("https://final-project-server-tau-jade.vercel.app/biodata");
                 const data = await response.json();
                 setBiodatas(data);
                 setFilteredBiodatas(data);

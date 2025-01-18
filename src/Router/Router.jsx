@@ -49,12 +49,12 @@ const Router = createBrowserRouter([
             {
                 path: "/profile/:id",
                 element: <PrivateRoute><BiodataDetailsPage></BiodataDetailsPage></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`)
+                loader: ({ params }) => fetch(`https://final-project-server-tau-jade.vercel.app/biodata/${params.id}`)
             },
             {
                 path: "/checkout/:id",
                 element: <PrivateRoute><CheckoutPage></CheckoutPage></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`)
+                loader: ({ params }) => fetch(`https://final-project-server-tau-jade.vercel.app/biodata/${params.id}`)
             },
             {
                 path: "/ContactUs",
@@ -108,7 +108,7 @@ const Router = createBrowserRouter([
             {
                 path:'edit-profile/:id',
                 element:<PrivateRoute><EditBiodata></EditBiodata> </PrivateRoute>,
-                loader:({ params }) => fetch(`http://localhost:5000/biodata/${params.id}`)
+                loader:({ params }) => fetch(`https://final-project-server-tau-jade.vercel.app/biodata/${params.id}`)
              
             },
 

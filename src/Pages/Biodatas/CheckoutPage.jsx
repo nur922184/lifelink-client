@@ -23,7 +23,7 @@ const CheckoutForm = () => {
 
     const cardElement = elements.getElement(CardElement);
 
-    const response = await fetch('http://localhost:5000/create-payment-intent', {
+    const response = await fetch('https://final-project-server-tau-jade.vercel.app/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: 500 }), // amount in cents
@@ -56,7 +56,7 @@ const CheckoutForm = () => {
         date: new Date(),
       };
 
-      const recordResponse = await fetch('http://localhost:5000/record-payment', {
+      const recordResponse = await fetch('https://final-project-server-tau-jade.vercel.app/record-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(paymentDetails),

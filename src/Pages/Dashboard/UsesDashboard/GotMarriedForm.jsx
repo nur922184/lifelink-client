@@ -13,7 +13,7 @@ const SuccessStoryForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5000/success-stories", formData);
+            const response = await axios.post("https://final-project-server-tau-jade.vercel.app/success-stories", formData);
             if (response.status === 200) {
                 Swal.fire({
                     icon: "success",

@@ -15,7 +15,7 @@ const PremiumProfiles = () => {
     useEffect(() => {
         const fetchProfiles = async () => {
             try {
-                const response = await fetch("http://localhost:5000/biodata");
+                const response = await fetch("https://final-project-server-tau-jade.vercel.app/biodata");
                 const data = await response.json();
                 // Filter premium users
                 const premiumUsers = data.filter((user) => user.status === "Premium");

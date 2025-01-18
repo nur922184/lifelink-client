@@ -11,7 +11,7 @@ const ApprovedContact = () => {
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const response = await fetch("http://localhost:5000/payments"); // Backend API endpoint
+        const response = await fetch("https://final-project-server-tau-jade.vercel.app/payments"); // Backend API endpoint
         const data = await response.json();
         setPayments(data);
       } catch (error) {
@@ -37,7 +37,7 @@ const ApprovedContact = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch(`http://localhost:5000/payments/${id}`, {
+          const response = await fetch(`https://final-project-server-tau-jade.vercel.app/payments/${id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

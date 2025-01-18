@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000', // আপনার API এর সঠিক URL দিন
+    baseURL: 'https://final-project-server-tau-jade.vercel.app', // আপনার API এর সঠিক URL দিন
 });
 
 const useAxiosSecurePublic = () => {

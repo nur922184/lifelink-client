@@ -15,7 +15,7 @@ const MyContactRequests = () => {
             setIsLoading(true);
             try {
                 const response = await fetch(
-                    `http://localhost:5000/payments${userEmail ? `?email=${userEmail}` : ""}`
+                    `https://final-project-server-tau-jade.vercel.app/payments${userEmail ? `?email=${userEmail}` : ""}`
                 );
                 const data = await response.json();
                 setPayments(data);
@@ -43,7 +43,7 @@ const MyContactRequests = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await fetch(`http://localhost:5000/payments/${id}`, {
+                    const response = await fetch(`https://final-project-server-tau-jade.vercel.app/payments/${id}`, {
                         method: "DELETE",
                     });
                     const result = await response.json();

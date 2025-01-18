@@ -13,7 +13,7 @@ const BiodataFetcher = () => {
     useEffect(() => {
         if (user?.email) {
             axios
-                .get(`http://localhost:5000/biodata?email=${user.email}`)
+                .get(`https://final-project-server-tau-jade.vercel.app/biodata?email=${user.email}`)
                 .then((response) => {
                     setBiodata(response.data);
                 })
