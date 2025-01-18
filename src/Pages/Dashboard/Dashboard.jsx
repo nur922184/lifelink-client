@@ -7,6 +7,7 @@ const Dashboard = () => {
 
     return (
         <div>
+            <h2 className='text-center text-2xl py-8 text-teal-800 font-bold'>Welcome Your Dashboard </h2>
             <div style={{
                 backgroundImage: `url(${animation})`,
             }}

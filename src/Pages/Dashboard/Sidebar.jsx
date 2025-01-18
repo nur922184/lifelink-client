@@ -18,7 +18,7 @@ const Sidebar = () => {
     <>
       {/* Toggle Button for Mobile */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded-md"
+        className="md:hidden fixed top-6 left-4 z-50 bg-teal-900 bg-opacity-15 dark:bg-opacity-15 dark:bg-red-600 dark:text-white text-gray-950 p-2 rounded-md"
         onClick={() => setIsOpen(!isOpen)}
       >
         <FaBars size={20} />

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart, } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
 
 import useAuth from '../../Hooks/useAuth';
-
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useBioDetails from '../../Hooks/useBioDetails';
 import ViewProfile from '../../Component/BTN/ViewProfile';
+import Loading from '../../Shared/Loading/Loading';
 
 const BiodataDetailsPage = () => {
   const { user } = useAuth();
   const biodata = useLoaderData();
   const axiosSecure = useAxiosSecure();
-  const [, refetch] = useBioDetails()
+  const [, refetch] = useBioDetails();
   const [similarBiodatas, setSimilarBiodatas] = useState([]);
+  const [loadingSimilar, setLoadingSimilar] = useState(true); // Loading state for similar biodatas
   const navigate = useNavigate();
-  // Mock logic for premium check
 
   // Fetch similar biodatas (maximum 3)
   useEffect(() => {
@@ -29,6 +29,8 @@ const BiodataDetailsPage = () => {
         setSimilarBiodatas(data);
       } catch (error) {
         console.error('Error fetching similar biodatas:', error);
+      } finally {
+        setLoadingSimilar(false); // Stop loading once data is fetched
       }
     };
 
@@ -48,11 +50,10 @@ const BiodataDetailsPage = () => {
         mobileNumber: biodata.mobileNumber,
         permanentDivision: biodata.permanentDivision,
         age: biodata.age,
-        profileImage: biodata.profileImage
-      }
+        profileImage: biodata.profileImage,
+      };
       axiosSecure.post('/favorites', favoritesDetails)
         .then(res => {
-          // console.log(res.data)
           if (res.data.insertedId) {
             Swal.fire({
               position: "top-end",
@@ -63,9 +64,8 @@ const BiodataDetailsPage = () => {
             });
             refetch();
           }
-        })
+        });
     }
-
   };
 
   // Handle request contact information
@@ -93,33 +93,15 @@ const BiodataDetailsPage = () => {
             <h3 className="text-xl font-bold text-center md:text-left border-b-2 border-white pb-2">
               Profile Details
             </h3>
-            <p>
-              <strong>Name:</strong> {biodata.name}
-            </p>
-            <p>
-              <strong>Age:</strong> {biodata.age}
-            </p>
-            <p>
-              <strong>Height:</strong> {biodata.height}
-            </p>
-            <p>
-              <strong>Weight:</strong> {biodata.weight}
-            </p>
-            <p>
-              <strong>Permanent Division:</strong> {biodata.permanentDivision}
-            </p>
-            <p>
-              <strong>Present Division:</strong> {biodata.presentDivision}
-            </p>
-            <p>
-              <strong>Occupation:</strong> {biodata.occupation}
-            </p>
-            <p>
-              <strong>Father's Name:</strong> {biodata.fathersName}
-            </p>
-            <p>
-              <strong>Mother's Name:</strong> {biodata.mothersName}
-            </p>
+            <p><strong>Name:</strong> {biodata.name}</p>
+            <p><strong>Age:</strong> {biodata.age}</p>
+            <p><strong>Height:</strong> {biodata.height}</p>
+            <p><strong>Weight:</strong> {biodata.weight}</p>
+            <p><strong>Permanent Division:</strong> {biodata.permanentDivision}</p>
+            <p><strong>Present Division:</strong> {biodata.presentDivision}</p>
+            <p><strong>Occupation:</strong> {biodata.occupation}</p>
+            <p><strong>Father's Name:</strong> {biodata.fathersName}</p>
+            <p><strong>Mother's Name:</strong> {biodata.mothersName}</p>
             <p className="flex items-center">
               <FaMapMarkerAlt className="mr-2 text-yellow-400" />
               <strong>Address:</strong> {biodata.address}
@@ -129,14 +111,12 @@ const BiodataDetailsPage = () => {
             </div>
           </div>
         </div>
+
         {/* Contact Info */}
         {biodata.status === "Premium" ? (
-          <>
-            <p className="text-red-500">
-              Contact Information is visible to premium members only.
-            </p>
-
-          </>
+          <p className="text-red-500">
+            Contact Information is visible to premium members only.
+          </p>
         ) : (
           <>
             <p className="flex items-center">
@@ -150,14 +130,13 @@ const BiodataDetailsPage = () => {
           </>
         )}
 
-
         {/* Actions */}
         <div className="mt-4">
           <button
             onClick={handleAddToFavorites}
             className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600"
           >
-            <FaHeart></FaHeart>
+            <FaHeart />
           </button>
           <button
             onClick={handleRequestContact}
@@ -165,42 +144,46 @@ const BiodataDetailsPage = () => {
           >
             Request Contact Information
           </button>
-
         </div>
       </div>
 
       {/* Similar Biodatas */}
-
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Similar Biodatas</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {similarBiodatas.map((similar) => (
-
-            <div key={similar._id} className="flex items-center p-4 rounded-lg shadow-lg bg-gray-100 w-72">
-              {/* Profile Image */}
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-300">
-                <img
-                  src={similar.profileImage} // Replace this with the actual image URL
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* User Info */}
-              <div className="ml-4 flex-grow">
-                <h2 className="text-lg font-semibold text-gray-800">{similar.name}</h2>
-                <p className="text-sm text-gray-600">{similar.type}</p>
-              </div>
-
-              {/* Menu Icon */}
-              <Link to={`/profile/${similar._id}`}>
-                <div className=''>
-                  <ViewProfile></ViewProfile>
+        {loadingSimilar ? (
+          <p><Loading></Loading></p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {similarBiodatas.map((similar) => (
+              <div
+                key={similar._id}
+                className="flex items-center p-4 rounded-lg shadow-lg bg-gray-100 w-72"
+              >
+                {/* Profile Image */}
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-300">
+                  <img
+                    src={similar.profileImage}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </Link>
-            </div>
-          ))}
-        </div>
+
+                {/* User Info */}
+                <div className="ml-4 flex-grow">
+                  <h2 className="text-lg font-semibold text-gray-800">{similar.name}</h2>
+                  <p className="text-sm text-gray-600">{similar.type}</p>
+                </div>
+
+                {/* Menu Icon */}
+                <Link to={`/profile/${similar._id}`}>
+                  <div>
+                    <ViewProfile />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

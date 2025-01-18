@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Banner from './Banner';
 import PremiumProfiles from './PremiumProfiles';
+import HowItWorks from './HowItWorks';
+import SuccessCounter from '../../SuccessCounter';
 
 const Home = () => {
   
@@ -12,6 +14,8 @@ const Home = () => {
             </Helmet>
            <Banner></Banner>
            <PremiumProfiles></PremiumProfiles>
+           <HowItWorks></HowItWorks>
+           <SuccessCounter></SuccessCounter>
         </div>
     );
 };
