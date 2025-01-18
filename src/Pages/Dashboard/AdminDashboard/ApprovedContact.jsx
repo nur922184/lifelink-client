@@ -39,14 +39,20 @@ const ApprovedContact = () => {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ status: "Premium" }), // Optional: You can pass other statuses
+                body: JSON.stringify({ status: "Premium" }),
               });
       
               const data = await response.json();
       
               if (data.success) {
+                // Update the local state immediately
+                setPayments((prevPayments) =>
+                  prevPayments.map((payment) =>
+                    payment._id === id ? { ...payment, status: "Premium" } : payment
+                  )
+                );
+      
                 Swal.fire("Approved!", data.message, "success");
-                // Update the UI or fetch the latest data
               } else {
                 Swal.fire("Failed!", data.message, "error");
               }

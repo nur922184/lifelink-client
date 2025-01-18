@@ -26,40 +26,40 @@ const MyContactRequests = () => {
 
 
 
-const handleDelete = async (id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-    cancelButtonText: "Cancel",
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      try {
-        const response = await fetch(`http://localhost:5000/payments/${id}`, {
-          method: "DELETE",
-        });
-        const result = await response.json();
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`http://localhost:5000/payments/${id}`, {
+                        method: "DELETE",
+                    });
+                    const result = await response.json();
 
-        if (result.success) {
-          Swal.fire("Deleted!", "Your data has been deleted.", "success");
-          // লিস্ট থেকে ডেটা সরিয়ে আপডেট করুন
-          setPayments((prevPayments) =>
-            prevPayments.filter((payment) => payment._id !== id)
-          );
-        } else {
-          Swal.fire("Failed!", result.message, "error");
-        }
-      } catch (error) {
-        console.error("Error deleting data:", error);
-        Swal.fire("Error!", "Something went wrong.", "error");
-      }
-    }
-  });
-};
+                    if (result.success) {
+                        Swal.fire("Deleted!", "Your data has been deleted.", "success");
+                        // লিস্ট থেকে ডেটা সরিয়ে আপডেট করুন
+                        setPayments((prevPayments) =>
+                            prevPayments.filter((payment) => payment._id !== id)
+                        );
+                    } else {
+                        Swal.fire("Failed!", result.message, "error");
+                    }
+                } catch (error) {
+                    console.error("Error deleting data:", error);
+                    Swal.fire("Error!", "Something went wrong.", "error");
+                }
+            }
+        });
+    };
 
 
     return (
@@ -84,7 +84,7 @@ const handleDelete = async (id) => {
                                 <td className="border border-gray-300 px-4 py-2">{request.biodataId}</td>
                                 <td className="border border-gray-300 px-4 py-2">
                                     <span
-                                        className={`px-2 py-1 rounded text-white ${request.status === "Approved"
+                                        className={`px-2 py-1 rounded text-white ${request.status === "Premium"
                                                 ? "bg-green-500"
                                                 : "bg-yellow-500"
                                             }`}
