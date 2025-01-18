@@ -88,7 +88,7 @@ const Router = createBrowserRouter([
             {
                 path:'viewBiodata',
                 element:<PrivateRoute><BiodataFetcher></BiodataFetcher></PrivateRoute>
-                // element:<ViewBiodata></ViewBiodata>
+              
             },
             {
                 path:'addbiodata',

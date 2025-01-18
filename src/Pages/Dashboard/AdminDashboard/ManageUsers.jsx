@@ -24,7 +24,7 @@ const ManageUsers = () => {
             });
             return;
         }
-    
+
         Swal.fire({
             title: "Are you sure?",
             text: "Do you want to grant admin privileges to this user?",
@@ -110,14 +110,14 @@ const ManageUsers = () => {
     }
 
     return (
-        <div className="p-4">
+        <div className="p-4 h-screen">
             <div className="flex justify-evenly my-4">
                 <h2 className="text-2xl font-bold">All Users: {users.length}</h2>
                 <h2 className="text-2xl font-bold">Manage Your Users</h2>
             </div>
             <table className="table-auto w-full border-collapse border border-gray-300">
                 <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-gray-100 dark:bg-gray-800">
                         <th className="border px-4 py-2">Name</th>
                         <th className="border px-4 py-2">Email</th>
                         <th className="border px-4 py-2">Role</th>
@@ -128,20 +128,18 @@ const ManageUsers = () => {
                         <tr key={user._id} className="text-center">
                             <td className="border px-4 py-2">{user.name}</td>
                             <td className="border px-4 py-2">{user.email}</td>
-                            <td className="border px-4 py-2">
+                            <td className="border px-4 py-2 flex justify-center items-center">
                                 {user.role ? (
                                     <span className="text-white px-3 py-1 rounded bg-gray-500">
-                                        {/* Display the user's role */}
                                         {user.role === 'admin' && 'Admin'}
                                         {user.role === 'premium' && 'Premium'}
                                         {user.role === 'user' && 'User'}
                                     </span>
                                 ) : (
-                                    <div>
-                                        {/* Display Make Admin and Make Premium buttons */}
+                                    <div className="flex flex-wrap gap-2">
                                         <button
                                             onClick={() => handleMakeAdmin(user._id)}
-                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
+                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                                         >
                                             Make Admin
                                         </button>

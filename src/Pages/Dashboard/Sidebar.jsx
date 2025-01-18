@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaBars, FaTachometerAlt, FaClipboard, FaEnvelope, FaUser, FaBox, FaSignInAlt, FaUserPlus, FaHome, FaAudible } from "react-icons/fa";
+import { FaBars, FaTachometerAlt, FaClipboard, FaEnvelope, FaUser, FaHome, FaAudible } from "react-icons/fa";
 import LogOut from "../../Component/SignOut/LogOut";
 import { BiSolidSpa } from "react-icons/bi";
 import { MdContacts } from "react-icons/md";
 import useBioDetails from "../../Hooks/useBioDetails";
 import useAdmin from "../../Hooks/useAdmin";
+import logo from '../../assets/Images/logo-LifeLink.png'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,20 +23,18 @@ const Sidebar = () => {
       >
         <FaBars size={20} />
       </button>
-
+  
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full bg-white dark:bg-gray-900 dark:text-white w-64 shadow-lg transform ${isOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 md:translate-x-0`}
       >
         {/* Logo Section */}
-        <div className="flex items-center p-4 border-b">
-          <div className="bg-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold">
-            F
-          </div>
-          <span className="ml-2 text-lg font-bold text-gray-800">Dashboard</span>
+        <div className="flex items-center p-4  border-b">
+          <img className="w-16 h-14" src={logo} alt="" />
+          <span className="ml-2 text-lg font-bold text-gray-800 dark:text-white">Dashboard</span>
         </div>
-
+  
         {/* Menu Links */}
         <nav className="mt-4 mb-4">
           <ul className="space-y-2">
@@ -45,7 +44,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/adminDashboard"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaTachometerAlt className="w-5 h-5" />
                     <span className="ml-3">Admin Dashboard</span>
@@ -54,7 +59,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manage"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaClipboard className="w-5 h-5" />
                     <span className="ml-3">Manage Users</span>
@@ -63,7 +74,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/allUsers"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaClipboard className="w-5 h-5" />
                     <span className="ml-3">All Users</span>
@@ -72,19 +89,28 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/ApprovedPremium"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaEnvelope className="w-5 h-5" />
                     <span className="ml-3">Approved Premium</span>
-                    <div className="badge badge-secondary ml-8">
-                      {BioDetails?.length || 0}
-                    </div>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/dashboard/ApprovedContactRequest"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaUser className="w-5 h-5" />
                     <span className="ml-3">Approved Contact Request</span>
@@ -97,7 +123,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/editBiodata"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaTachometerAlt className="w-5 h-5" />
                     <span className="ml-3">Edit Biodata</span>
@@ -106,7 +138,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/viewBiodata"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaClipboard className="w-5 h-5" />
                     <span className="ml-3">View Biodata</span>
@@ -115,7 +153,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/favourites"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaEnvelope className="w-5 h-5" />
                     <span className="ml-3">Favourites Biodata</span>
@@ -127,7 +171,13 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/view"
-                    className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
                   >
                     <FaUser className="w-5 h-5" />
                     <span className="ml-3">My Contact Request</span>
@@ -137,21 +187,80 @@ const Sidebar = () => {
             )}
           </ul>
         </nav>
-
+  
         <hr />
         <nav className="mt-4 ">
           <ul className="space-y-2">
-            <li><NavLink className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg" to="/"><FaHome className="w-5 h-5" /> <span className="ml-3">Home</span> </NavLink></li>
-            <li><NavLink className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg" to="/Biodatas"><BiSolidSpa className="w-5 h-5" /> <span className="ml-3">Biodatas</span> </NavLink></li>
-            <li><NavLink className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg" to="/AboutUs"> <FaAudible className="w-5 h-5" /> <span className="ml-3"> About Us</span></NavLink></li>
-            <li><NavLink className="flex items-center p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg" to="/ContactUs"><MdContacts className="w-5 h-5" /> <span className="ml-3">Contact Us</span> </NavLink></li>
-
-            <li><LogOut></LogOut></li>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `flex items-center p-2 rounded-lg ${
+                    isActive
+                      ? "bg-blue-500 text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  }`
+                }
+              >
+                <FaHome className="w-5 h-5" />
+                <span className="ml-3">Home</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/Biodatas"
+                className={({ isActive }) =>
+                  `flex items-center p-2 rounded-lg ${
+                    isActive
+                      ? "bg-blue-500 text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  }`
+                }
+              >
+                <BiSolidSpa className="w-5 h-5" />
+                <span className="ml-3">Biodatas</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/AboutUs"
+                className={({ isActive }) =>
+                  `flex items-center p-2 rounded-lg ${
+                    isActive
+                      ? "bg-blue-500 text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  }`
+                }
+              >
+                <FaAudible className="w-5 h-5" />
+                <span className="ml-3">About Us</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/ContactUs"
+                className={({ isActive }) =>
+                  `flex items-center p-2 rounded-lg ${
+                    isActive
+                      ? "bg-blue-500 text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  }`
+                }
+              >
+                <MdContacts className="w-5 h-5" />
+                <span className="ml-3">Contact Us</span>
+              </NavLink>
+            </li>
+  
+            <li>
+              <LogOut></LogOut>
+            </li>
           </ul>
         </nav>
       </div>
     </>
   );
+  
 };
 
 export default Sidebar;

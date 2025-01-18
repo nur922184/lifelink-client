@@ -1,9 +1,7 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
-import { MdOutlinePostAdd } from "react-icons/md";
 import Lottie from "lottie-react";
 import emptyAnimation from "../../../assets/lotte-json/nodata.json";
-import { Link } from "react-router-dom";
 
 const NoFound = () => {
     return (

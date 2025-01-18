@@ -8,7 +8,7 @@ import Sidebar from '../Pages/Dashboard/Sidebar';
 const DashboardLayout = () => {
   
     return (
-        <main className='dark:bg-gray-900 dark:text-white'>
+        <main className='dark:bg-gray-900 dark:text-white max-w-full mx-auto'>
             <Helmet>
                 <title>Life Link  | Dashboard</title>
             </Helmet>

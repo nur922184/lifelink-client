@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import NoFound from './NoFound';
 
 const MyContactRequests = () => {
     const [payments, setPayments] = useState([]);
@@ -63,9 +64,10 @@ const MyContactRequests = () => {
 
 
     return (
-        <div className="container mx-auto p-5">
-            <h1 className="text-2xl font-bold mb-4">Payment History</h1>
-            {payments.length > 0 ? (
+        <div className="container mx-auto h-screen p-5">
+        <h1 className="text-2xl font-bold mb-4 text-center">MY contact Request</h1>
+        {payments.length > 0 ? (
+            <div className="overflow-x-auto">
                 <table className="min-w-full border-collapse border border-gray-300">
                     <thead>
                         <tr>
@@ -110,10 +112,12 @@ const MyContactRequests = () => {
                         ))}
                     </tbody>
                 </table>
-            ) : (
-                <p>No payments found.</p>
-            )}
-        </div>
+            </div>
+        ) : (
+           <NoFound></NoFound>
+        )}
+    </div>
+
     );
 };
 

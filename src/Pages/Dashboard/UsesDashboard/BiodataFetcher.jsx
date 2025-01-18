@@ -22,72 +22,101 @@ const BiodataFetcher = () => {
     }, [user?.email]); // যখন `user.email` পরিবর্তন হবে তখন পুনরায় কল করবে।
 
     return (
-        <div>
-            {biodata.length > 0 ? (
-                <ul>
-                    {biodata.map((bio, index) => (
-
-                        <li key={index} className="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-6">
-                            <div className="flex-shrink-0">
-                                <img
-                                    src={bio.profileImage}
-                                    alt={bio.name}
-                                    className="w-32 h-32 object-cover rounded-full shadow-lg"
-                                />
-                            </div>
-                            <div className="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-6 p-4 sm:p-8 bg-gray-50 min-h-screen">
-                                <div className="flex-grow  w-full sm:w-auto">
-                                    <h2 className="text-2xl font-bold text-gray-800 text-center sm:text-left">{bio.name}</h2>
-                                    <div className="flex gap-10">
-                                        <div className="mt-4 space-y-2">
-                                            <p className="text-sm text-gray-600"><strong>Email:</strong> {bio.contactEmail}</p>
-                                            <p className="text-sm text-gray-600"><strong>Occupation:</strong> {bio.occupation}</p>
-                                            <p className="text-sm text-gray-600"><strong>Age:</strong> {bio.age} years</p>
-                                            <p className="text-sm text-gray-600"><strong>Height:</strong> {bio.height}</p>
-                                            <p className="text-sm text-gray-600"><strong>Weight:</strong> {bio.weight}</p>
-                                            <p className="text-sm text-gray-600"><strong>Race:</strong> {bio.race}</p>
-                                            <p className="text-sm text-gray-600"><strong>Father's Name:</strong> {bio.fathersName}</p>
-                                            <p className="text-sm text-gray-600"><strong>Mother's Name:</strong> {bio.mothersName}</p>
-                                            <p className="text-sm text-gray-600"><strong>Permanent Division:</strong> {bio.permanentDivision}</p>
-                                            <p className="text-sm text-gray-600"><strong>Present Division:</strong> {bio.presentDivision}</p>
-                                            <p className="text-sm text-gray-600"><strong>Contact Email:</strong> {bio.contactEmail}</p>
-                                            <p className="text-sm text-gray-600"><strong>Mobile Number:</strong> {bio.mobileNumber}</p>
-                                            <p className="text-sm text-gray-600"><strong>Status:</strong> {bio.status}</p>
-                                        </div>
-
-                                        <div className="mt-6">
-                                            <h3 className="text-lg font-semibold text-gray-800">Partner Expectations:</h3>
-                                            <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                                                <li><strong>Age:</strong> {bio.expectedPartnerAge} years</li>
-                                                <li><strong>Height:</strong> {bio.expectedPartnerHeight}</li>
-                                                <li><strong>Weight:</strong> {bio.expectedPartnerWeight}</li>
-                                            </ul>
-                                        </div>
-
+        <div className="container mx-auto p-5 bg-white dark:bg-gray-900">
+        {biodata.length > 0 ? (
+            <ul>
+                {biodata.map((bio, index) => (
+                    <li
+                        key={index}
+                        className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-6 text-gray-800 dark:text-white"
+                    >
+                        <div className="flex-shrink-0">
+                            <img
+                                src={bio.profileImage}
+                                alt={bio.name}
+                                className="w-32 h-32 object-cover rounded-full shadow-lg"
+                            />
+                        </div>
+                        <div className="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-6 p-4 sm:p-8 bg-gray-50 dark:bg-gray-700 min-h-screen">
+                            <div className="flex-grow w-full sm:w-auto">
+                                <h2 className="text-2xl font-bold text-center sm:text-left">{bio.name}</h2>
+                                <div className="flex gap-10">
+                                    <div className="mt-4 space-y-2">
+                                        <p className="text-sm">
+                                            <strong>Email:</strong> {bio.contactEmail}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Occupation:</strong> {bio.occupation}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Age:</strong> {bio.age} years
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Height:</strong> {bio.height}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Weight:</strong> {bio.weight}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Race:</strong> {bio.race}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Father's Name:</strong> {bio.fathersName}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Mother's Name:</strong> {bio.mothersName}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Permanent Division:</strong> {bio.permanentDivision}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Present Division:</strong> {bio.presentDivision}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Mobile Number:</strong> {bio.mobileNumber}
+                                        </p>
+                                        <p className="text-sm">
+                                            <strong>Status:</strong> {bio.status}
+                                        </p>
                                     </div>
-
-                                    <div className="mt-8 flex justify-center sm:justify-start">
-                                        <Link to={`/checkout/${bio._id}`}>
-                                            <button
-                                                className="btn btn-secondary w-40 bg-green-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600"
-                                            >
-                                                Premium Now
-                                            </button>
-                                        </Link>
+    
+                                    <div className="mt-6">
+                                        <h3 className="text-lg font-semibold">Partner Expectations:</h3>
+                                        <ul className="list-disc list-inside text-sm space-y-1">
+                                            <li>
+                                                <strong>Age:</strong> {bio.expectedPartnerAge} years
+                                            </li>
+                                            <li>
+                                                <strong>Height:</strong> {bio.expectedPartnerHeight}
+                                            </li>
+                                            <li>
+                                                <strong>Weight:</strong> {bio.expectedPartnerWeight}
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
+    
+                                <div className="mt-8 flex justify-center sm:justify-start">
+                                    <Link to={`/checkout/${bio._id}`}>
+                                        <button
+                                            className="btn btn-secondary w-40 bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded"
+                                        >
+                                            Premium Now
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
-                        </li>
-
-                    ))}
-                </ul>
-            ) : (
-                <div className="flex flex-col items-center justify-center h-screen">
-
-                    <NoFilesFound></NoFilesFound>
-                </div>
-            )}
-        </div>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <div className="flex flex-col items-center justify-center h-screen">
+                <NoFilesFound></NoFilesFound>
+            </div>
+        )}
+    </div>
+    
     );
 };
 
