@@ -24,6 +24,7 @@ import EditBiodaata from '../Pages/Dashboard/UsesDashboard/EditBiodaata';
 import AdminDahoard from '../Pages/Dashboard/AdminDashboard/AdminDahoard';
 import ApprovedContact from '../Pages/Dashboard/AdminDashboard/ApprovedContact';
 import ApprovedPremium from '../Pages/Dashboard/AdminDashboard/ApprovedPremium';
+import GotMarriedForm from '../Pages/Dashboard/UsesDashboard/GotMarriedForm';
 
 
 
@@ -97,6 +98,11 @@ const Router = createBrowserRouter([
             {
                 path:'view',
                 element:<PrivateRoute><MyContactRequests></MyContactRequests></PrivateRoute>
+             
+            },
+            {
+                path:'married',
+                element:<PrivateRoute><GotMarriedForm></GotMarriedForm></PrivateRoute>
              
             },
             {

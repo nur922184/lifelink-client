@@ -68,7 +68,7 @@ const ApprovedContact = () => {
   };
 
   return (
-    <div className="container h-screen mx-auto p-5">
+    <div className="container  mx-auto p-5">
       <h1 className="text-2xl font-bold mb-4 text-center">Approved Content Request</h1>
 
       {isLoading ? ( // লোডিং অবস্থায় মেসেজ দেখানো হচ্ছে

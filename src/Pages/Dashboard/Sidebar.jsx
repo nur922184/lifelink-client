@@ -7,6 +7,8 @@ import { MdContacts } from "react-icons/md";
 import useBioDetails from "../../Hooks/useBioDetails";
 import useAdmin from "../../Hooks/useAdmin";
 import logo from '../../assets/Images/logo-LifeLink.png'
+import { BsFileEarmarkRuled } from "react-icons/bs";
+import { FaBookBookmark } from "react-icons/fa6";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +38,8 @@ const Sidebar = () => {
         </div>
   
         {/* Menu Links */}
-        <nav className="mt-4 mb-4">
-          <ul className="space-y-2">
+        <nav className="mt-2 mb-2">
+          <ul className="space-y-1">
             {isAdmin ? (
               <>
                 {/* Admin menu */}
@@ -161,7 +163,7 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <FaEnvelope className="w-5 h-5" />
+                    <FaBookBookmark className="w-5 h-5" />
                     <span className="ml-3">Favourites Biodata</span>
                     <div className="badge badge-secondary ml-8">
                       {BioDetails?.length || 0}
@@ -183,14 +185,29 @@ const Sidebar = () => {
                     <span className="ml-3">My Contact Request</span>
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/married"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
+                  >
+                    <BsFileEarmarkRuled className="w-5 h-5" />
+                    <span className="ml-3">Got Married</span>
+                  </NavLink>
+                </li>
               </>
             )}
           </ul>
         </nav>
   
         <hr />
-        <nav className="mt-4 ">
-          <ul className="space-y-2">
+        <nav className="mt-2 ">
+          <ul className="space-y-1">
             <li>
               <NavLink
                 to="/"

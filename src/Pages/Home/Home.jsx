@@ -4,6 +4,7 @@ import Banner from './Banner';
 import PremiumProfiles from './PremiumProfiles';
 import HowItWorks from './HowItWorks';
 import SuccessCounter from './SuccessCounter';
+import SuccessStories from './SuccessStories';
 
 
 const Home = () => {
@@ -16,7 +17,8 @@ const Home = () => {
            <Banner></Banner>
            <PremiumProfiles></PremiumProfiles>
            <HowItWorks></HowItWorks>
-           <SuccessCounter></SuccessCounter>
+           <SuccessCounter></SuccessCounter> 
+           <SuccessStories></SuccessStories>
         </div>
     );
 };

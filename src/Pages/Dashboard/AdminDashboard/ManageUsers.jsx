@@ -110,7 +110,7 @@ const ManageUsers = () => {
     }
 
     return (
-        <div className="p-4 h-screen">
+        <div className="p-4 ">
             <div className="flex justify-evenly my-4">
                 <h2 className="text-2xl font-bold">All Users: {users.length}</h2>
                 <h2 className="text-2xl font-bold">Manage Your Users</h2>

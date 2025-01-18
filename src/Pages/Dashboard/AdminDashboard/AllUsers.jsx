@@ -61,7 +61,7 @@ const AllUsers = () => {
     }
 
     return (
-        <div className="p-4 h-screen">
+        <div className="p-4 ">
             <div className="flex flex-col sm:flex-row sm:justify-evenly my-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-center sm:text-left mb-2 sm:mb-0">
                     All Users: {users.length}
