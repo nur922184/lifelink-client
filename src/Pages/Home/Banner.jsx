@@ -1,12 +1,12 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import img1 from "../../assets/Banner-image/1.jpg";
-import img2 from "../../assets/Banner-image/2.jpg";
-import img3 from "../../assets/Banner-image/3.jpg";
+import img1 from "../../assets/Images/1.jpg";
+import img2 from "../../assets/Images/2.jpg";
+import img3 from "../../assets/Images/social-media-axiety.jpg";
 import img4 from "../../assets/Banner-image/4.jpg";
 import img5 from "../../assets/Banner-image/5.jpg";
-import img6 from "../../assets/Banner-image/6.jpg";
+import img6 from "../../assets/Images/6.jpg";
 
 const Banner = () => {
   return (
@@ -25,22 +25,22 @@ const Banner = () => {
         className="relative"
       >
         <div>
-          <img src={img1} alt="Slide 1" className="h-[500px] object-cover w-full" />
+          <img src={img1} alt="Slide 1" className="h-[500px] bg-cover w-full" />
         </div>
         <div>
-          <img src={img2} alt="Slide 2" className="h-[500px] object-cover w-full" />
+          <img src={img2} alt="Slide 2" className="h-[500px] bg-cover w-full" />
         </div>
         <div>
-          <img src={img3} alt="Slide 3" className="h-[500px] object-cover w-full" />
+          <img src={img3} alt="Slide 3" className="h-[500px] bg-cover w-full" />
         </div>
         <div>
-          <img src={img4} alt="Slide 4" className="h-[500px] object-cover w-full" />
+          <img src={img4} alt="Slide 4" className="h-[500px] bg-cover w-full" />
         </div>
         <div>
-          <img src={img5} alt="Slide 5" className="h-[500px] object-cover w-full" />
+          <img src={img5} alt="Slide 5" className="h-[500px] bg-cover w-full" />
         </div>
         <div>
-          <img src={img6} alt="Slide 6" className="h-[500px] object-cover w-full" />
+          <img src={img6} alt="Slide 6" className="h-[500px] bg-cover w-full" />
         </div>
       </Carousel>
     </div>

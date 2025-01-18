@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, } from "react-router-dom";
-import {  FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import imgBiodata from '../../assets/Images/gif.gif'
 import { GiBookAura } from "react-icons/gi";
 import { HiAcademicCap } from "react-icons/hi";
@@ -61,12 +61,7 @@ const BiodataPage = () => {
         }));
     };
 
-    // Handle view profile button click
-    //   const handleViewProfile = (_id) => {
-    //     const id = data._id;
-    //     console.log(id)
-    //     navigate(`/profile/${id}`);
-    //   };
+
 
     return (
         <div className="mx-auto p-5 grid grid-cols-12 gap-6 py-32">
@@ -74,7 +69,7 @@ const BiodataPage = () => {
                 <title>Life Link  | BioData</title>
             </Helmet>
             {/* Sidebar for Filters */}
-            <div className="col-span-3 border h-screen dark:text-white border-gray-300 p-4 rounded-lg sticky z-0 block shadow-md">
+            <div className="col-span-5 md:col-span-3 border h-screen dark:text-white border-gray-300 p-4 rounded-lg sticky z-0 block shadow-md">
                 <h2 className="text-xl font-bold mb-4">Filter Biodatas</h2>
                 <div className="mb-4">
                     <label className="block font-medium mb-2">Age Range</label>
@@ -138,41 +133,12 @@ const BiodataPage = () => {
 
             {/* Biodata List */}
             <div
-                className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                className="col-span-7 md:col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredBiodatas.map((biodata) => (
-                    // <div
-                    //     key={biodata.id}
-                    //     className="border border-gray-300 p-4 rounded-lg shadow-md"
-                    // >
-                    //     <img
-                    //         src={biodata.profileImage || "https://via.placeholder.com/150"}
-                    //         alt="Profile"
-                    //         className="w-full h-40 object-cover rounded mb-4"
-                    //     />
-                    //     <h3 className="text-lg font-bold">{biodata.name}</h3>
-                    //     <p>
-                    //         <strong>Type:</strong> {biodata.type}
-                    //     </p>
-                    //     <p>
-                    //         <strong>Division:</strong> {biodata.permanentDivision}
-                    //     </p>
-                    //     <p>
-                    //         <strong>Age:</strong> {biodata.age}
-                    //     </p>
-                    //     <p>
-                    //         <strong>Occupation:</strong> {biodata.occupation}
-                    //     </p>
-                    //     <Link to={`/profile/${biodata._id}`}>
-                    //         <button
-                    //             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                    //         >View Profile
-                    //         </button>
-                    //     </Link>
-                    // </div>
-                    <div  style={{
+                    <div style={{
                         backgroundImage: `url(${imgBiodata})`,
                     }}
-                     key={biodata.id} className="flex w-full justify-center items-center bg-base-50">
+                        key={biodata.id} className="flex w-full justify-center items-center bg-base-50">
                         <div className="w-full bg-base-50 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
                             <div className="flex justify-center mt-4">
                                 <img
@@ -201,7 +167,7 @@ const BiodataPage = () => {
                             </div>
                             <div className="text-center mt-4 mb-6">
                                 <Link to={`/profile/${biodata._id}`}>
-                                  <ViewProfile id="custom-id"></ViewProfile>
+                                    <ViewProfile id="custom-id"></ViewProfile>
                                 </Link>
                             </div>
                         </div>
