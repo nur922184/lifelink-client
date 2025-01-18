@@ -89,14 +89,14 @@ const handleDelete = async (id) => {
                                                 : "bg-yellow-500"
                                             }`}
                                     >
-                                        {request.status}
+                                        {request.status === '' ? 'pending' : request.status}
                                     </span>
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                    {request.status === "Approved" ? request.mobile : "N/A"}
+                                    {request.status === "Premium" ? request.mobile : "N/A"}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                    {request.status === "Approved" ? request.postEmail : "N/A"}
+                                    {request.status === "Premium" ? request.postEmail : "N/A"}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">
                                     <button

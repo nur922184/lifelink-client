@@ -69,7 +69,7 @@ const BiodataFetcher = () => {
                                     <div className="mt-8 flex justify-center sm:justify-start">
                                         <Link to={`/checkout/${bio._id}`}>
                                             <button
-                                                className="btn btn-secondary w-40 bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600"
+                                                className="btn btn-secondary w-40 bg-green-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600"
                                             >
                                                 Premium Now
                                             </button>

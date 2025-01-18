@@ -47,7 +47,7 @@ const CheckoutForm = () => {
       const paymentDetails = {
         biodataId: biodata.id,
         mobile: biodata.mobileNumber,
-        status: 'pending',
+        status: '',
         name: biodata.name,
         postEmail: biodata.contactEmail,
         email: user.email,

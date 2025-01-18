@@ -63,6 +63,7 @@ const BiodataForm = () => {
                     expectedPartnerWeight: data.expectedPartnerWeight,
                     contactEmail: data.contactEmail,
                     mobileNumber: data.mobileNumber,
+                    status: '',
                 };
                 const BioRes = await axiosSecure.post('/biodata', biodata);
                 console.log(BioRes.data)
@@ -74,7 +75,7 @@ const BiodataForm = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    navigate ('/dashboard/editBiodata')
+                    navigate ('/dashboard/viewBiodata')
                 }
 
             }
@@ -129,7 +130,7 @@ const BiodataForm = () => {
                     <label className="block font-medium mb-2 text-sm sm:text-base">Height</label>
                     <input
                         {...register("height", { required: "Height is required" })}
-                        type="number"
+                        type="text"
                         placeholder="Enter height (e.g., 5'10\ '' )"
                         className="w-full p-2 border border-gray-300 rounded dark:text-black focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                     />

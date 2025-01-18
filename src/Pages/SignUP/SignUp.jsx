@@ -115,7 +115,7 @@ const SignUp = () => {
                         {/* Photo URL Field */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-cyan-100">Photo URL</span>
+                                <span className="label-text text-cyan-100">Photo URL</span>
                             </label>
                             <input
                                 type="text"

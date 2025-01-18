@@ -23,6 +23,7 @@ import MyContactRequests from '../Pages/Dashboard/UsesDashboard/MyContactRequest
 import EditBiodaata from '../Pages/Dashboard/UsesDashboard/EditBiodaata';
 import AdminDahoard from '../Pages/Dashboard/AdminDashboard/AdminDahoard';
 import ApprovedContact from '../Pages/Dashboard/AdminDashboard/ApprovedContact';
+import ApprovedPremium from '../Pages/Dashboard/AdminDashboard/ApprovedPremium';
 
 
 
@@ -123,6 +124,10 @@ const Router = createBrowserRouter([
             {
                 path:'ApprovedContactRequest',
                 element:<ApprovedContact></ApprovedContact>
+            },
+            {
+                path:'ApprovedPremium',
+                element:<ApprovedPremium></ApprovedPremium>
             },
         ]
     },
