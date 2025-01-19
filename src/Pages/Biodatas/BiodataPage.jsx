@@ -5,6 +5,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import imgBiodata from '../../assets/Images/gif.gif';
 import { HiAcademicCap } from "react-icons/hi";
 import ViewProfile from "../../Component/BTN/ViewProfile";
+import Loading from "../../Shared/Loading/Loading";
 
 const BiodataPage = () => {
     const [biodatas, setBiodatas] = useState([]);
@@ -17,10 +18,12 @@ const BiodataPage = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+    const [loading, setLoading] = useState(true); // Loading state
 
     // Fetch biodata from the API
     useEffect(() => {
         const fetchBiodatas = async () => {
+            setLoading(true); // Start loading
             try {
                 const response = await fetch("https://final-project-server-tau-jade.vercel.app/biodata");
                 const data = await response.json();
@@ -28,6 +31,8 @@ const BiodataPage = () => {
                 setFilteredBiodatas(data);
             } catch (error) {
                 console.error("Failed to fetch biodata:", error);
+            } finally {
+                setLoading(false); // End loading
             }
         };
 
@@ -143,75 +148,89 @@ const BiodataPage = () => {
 
             {/* Biodata List */}
             <div className="col-span-7 md:col-span-9">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {paginatedBiodatas.map((biodata) => (
-                        <div style={{ backgroundImage: `url(${imgBiodata})` }}
-                            key={biodata.id} className="flex w-full justify-center items-center bg-base-50">
-                            <div className="w-full bg-base-50 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
-                                <div className="flex justify-center mt-4">
-                                    <img
-                                        className="w-24 h-24 rounded-full border-4 border-gray-300"
-                                        src={biodata.profileImage || "https://via.placeholder.com/150"}
-                                        alt="Profile"
-                                    />
-                                </div>
-                                <div className="text-center mt-4">
-                                    <h2 className="text-2xl font-semibold text-gray-800">{biodata.name}</h2>
-                                    <p className="text-gray-600 text-sm">{biodata.type}</p>
-                                </div>
-                                <div className="mt-4 px-6">
-                                    <div className="flex items-center text-gray-600 mb-3">
-                                        <FaMapMarkerAlt className="mr-3 text-gray-500" />
-                                        <p>{biodata.permanentDivision}</p>
+                {loading ? (
+                    <div className="flex justify-center items-center h-screen">
+                       <Loading></Loading>
+                    </div>
+                ) : (
+                    <div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {paginatedBiodatas.map((biodata) => (
+                                <div
+                                    style={{ backgroundImage: `url(${imgBiodata})` }}
+                                    key={biodata.id}
+                                    className="flex w-full justify-center items-center bg-base-50"
+                                >
+                                    <div className="w-full bg-base-50 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+                                        <div className="flex justify-center mt-4">
+                                            <img
+                                                className="w-24 h-24 rounded-full border-4 border-gray-300"
+                                                src={biodata.profileImage || "https://via.placeholder.com/150"}
+                                                alt="Profile"
+                                            />
+                                        </div>
+                                        <div className="text-center mt-4">
+                                            <h2 className="text-2xl font-semibold text-gray-800">{biodata.name}</h2>
+                                            <p className="text-gray-600 text-sm">{biodata.type}</p>
+                                        </div>
+                                        <div className="mt-4 px-6">
+                                            <div className="flex items-center text-gray-600 mb-3">
+                                                <FaMapMarkerAlt className="mr-3 text-gray-500" />
+                                                <p>{biodata.permanentDivision}</p>
+                                            </div>
+                                            <div className="flex items-center text-gray-600 mb-3">
+                                                <p>Age :</p>
+                                                {biodata.age}
+                                            </div>
+                                            <div className="flex items-center text-gray-600 mb-3">
+                                                <HiAcademicCap className="mr-3 text-gray-500" />
+                                                <p>{biodata.occupation}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-center mt-4 mb-6">
+                                            <Link to={`/profile/${biodata._id}`}>
+                                                <ViewProfile id="custom-id"></ViewProfile>
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center text-gray-600 mb-3">
-                                        <p>Age :</p>
-                                        {biodata.age}
-                                    </div>
-                                    <div className="flex items-center text-gray-600 mb-3">
-                                        <HiAcademicCap className="mr-3 text-gray-500" />
-                                        <p>{biodata.occupation}</p>
-                                    </div>
                                 </div>
-                                <div className="text-center mt-4 mb-6">
-                                    <Link to={`/profile/${biodata._id}`}>
-                                        <ViewProfile id="custom-id"></ViewProfile>
-                                    </Link>
-                                </div>
-                            </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
 
-                {/* Pagination Controls */}
-                <div className="flex justify-center items-center mt-6">
-                    <button
-                        className="px-3 py-1 mx-1 border rounded-md"
-                        disabled={currentPage === 1}
-                        onClick={() => handlePageChange(currentPage - 1)}
-                    >
-                        Previous
-                    </button>
-                    {[...Array(totalPages)].map((_, index) => (
-                        <button
-                            key={index}
-                            className={`px-3 py-1 mx-1 border rounded-md ${currentPage === index + 1 ? "bg-gray-300" : ""}`}
-                            onClick={() => handlePageChange(index + 1)}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
-                    <button
-                        className="px-3 py-1 mx-1 border rounded-md"
-                        disabled={currentPage === totalPages}
-                        onClick={() => handlePageChange(currentPage + 1)}
-                    >
-                        Next
-                    </button>
-                </div>
+                        {/* Pagination Controls */}
+                        <div className="flex justify-center items-center mt-6">
+                            <button
+                                className="px-3 py-1 mx-1 border rounded-md"
+                                disabled={currentPage === 1}
+                                onClick={() => handlePageChange(currentPage - 1)}
+                            >
+                                Previous
+                            </button>
+                            {[...Array(totalPages)].map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`px-3 py-1 mx-1 border rounded-md ${
+                                        currentPage === index + 1 ? "bg-gray-300" : ""
+                                    }`}
+                                    onClick={() => handlePageChange(index + 1)}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                            <button
+                                className="px-3 py-1 mx-1 border rounded-md"
+                                disabled={currentPage === totalPages}
+                                onClick={() => handlePageChange(currentPage + 1)}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
 export default BiodataPage;
+

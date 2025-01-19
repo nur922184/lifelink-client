@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecurePublic from "../../../Hooks/useAxiosSecurePublic";
@@ -11,7 +11,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const BiodataForm = () => {
-
+    const [isLoading, setIsLoading] = useState(false);
     const axiosPublic = useAxiosSecurePublic();
     const axiosSecure = useAxiosSecure()
     const { BioData } = useFetchBiodata()
@@ -26,8 +26,7 @@ const BiodataForm = () => {
     } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data);
-
+        setIsLoading(true);
         // Create FormData instance
         const formData = new FormData();
         formData.append('image', data.profileImage[0]);
@@ -75,6 +74,7 @@ const BiodataForm = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setIsLoading(false);
                     navigate ('/dashboard/viewBiodata')
                 }
 
@@ -345,14 +345,21 @@ const BiodataForm = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="col-span-1 sm:col-span-2">
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm sm:text-base"
-                    >
-                        Submit
-                    </button>
-                </div>
+                 <div className="col-span-1 sm:col-span-2">
+                <button
+                    type="submit"
+                    className={`w-full py-2 rounded text-white text-sm sm:text-base ${
+                        isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
+                    }`}
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <span className="loading loading-spinner text-success"></span>
+                    ) : (
+                        'Submit'
+                    )}
+                </button>
+            </div>
             </form>
 
 

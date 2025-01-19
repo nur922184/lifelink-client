@@ -9,19 +9,22 @@ import { Helmet } from 'react-helmet-async';
 import SignINImage from '../../assets/Images/desktop-wallpaper-admin-login.jpg'
 import logo from '../../assets/Images/logo-LifeLink.png'
 import Swal from 'sweetalert2';
+
 const SignIn = () => {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false); // লোডিং স্টেট
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    // console.log('state in the location login pages', location.state)
-    const { SignIn } = useAuth()
+    const { SignIn } = useAuth();
+
     const handleLogin = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-    
+
+        setLoading(true); // লোডিং শুরু
         SignIn(email, password)
             .then(result => {
                 const user = result.user;
@@ -33,6 +36,7 @@ const SignIn = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                setLoading(false); // লোডিং শেষ
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -44,20 +48,19 @@ const SignIn = () => {
                     text: "Incorrect email or password. Please try again.",
                     showConfirmButton: true,
                 });
+                setLoading(false); // লোডিং শেষ
             });
     };
-    
-
 
     return (
         <div style={{
             backgroundImage: `url(${SignINImage})`,
         }}
-        className="hero dark:bg-gray-900 dark:text-white bg-base-200 min-h-screen">
+            className="hero dark:bg-gray-900 dark:text-white bg-base-200 min-h-screen">
             <Helmet>
                 <title>Life Link  | Sign In</title>
             </Helmet>
-            <div className="hero-content  flex-col-reverse md:flex-row-reverse">
+            <div className="hero-content flex-col-reverse md:flex-row-reverse">
                 <div 
                     className="card bg-base-75 bg-center bg-cover text-white md:w-[40%] shadow-2xl">
                     <div className='text-center px-5'>
@@ -89,18 +92,10 @@ const SignIn = () => {
                                 <a href="#" className="label-text-alt link link-hover text-cyan-100">Forgot password?</a>
                             </label>
                         </div>
-                        {/* <div className="form-control">
-                        <label className="label">
-                            <LoadCanvasTemplate />
-                        </label>
-                        <input type="text"
-                            onBlur={handleValidateCaptcha}
-                            name="captcha"
-                            placeholder="type the Captcha above" className="input input-bordered" required />
-                    </div> */}
                         <div className="form-control mt-6">
-                            {/* to do applly disabled */}
-                            <input disabled={false} className="btn bg-violet-300" type="submit" value="Login" />
+                            <button className="btn bg-violet-300" type="submit" disabled={loading}>
+                                {loading ? <span className="loading loading-spinner text-success ">Logging in...</span> : "Login"}
+                            </button>
                         </div>
                     </form>
                     <p className='px-6'><small>New Here? <Link className='text-blue-700 text-sm font-bold' to="/signup"> Create an account</Link></small></p>
@@ -108,7 +103,7 @@ const SignIn = () => {
                 </div>
 
                 <div className="text-center md:w-1/2 lg:text-left">
-                    <div className="text-center m-auto  w-3/4 dark:text-white">
+                    <div className="text-center m-auto w-3/4 dark:text-white">
                         <Lottie animationData={groovyWalkAnimation} loop={true} />
                     </div>
                 </div>

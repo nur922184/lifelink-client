@@ -15,7 +15,8 @@ import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [show, setShow] = useState(false)
-    const { crateNewUser, UpdateUserProfile } = useAuth()
+    const { crateNewUser, UpdateUserProfile } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
     const axiosPublic = useAxiosSecurePublic();
     const navigate = useNavigate()
 
@@ -27,7 +28,7 @@ const SignUp = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data);
+        setIsLoading(true);
         crateNewUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
@@ -51,6 +52,7 @@ const SignUp = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
+                                    setIsLoading(false);
                                     navigate("/");
                                 }
                             });
@@ -59,6 +61,7 @@ const SignUp = () => {
             })
             .catch(error => {
                 console.error(error.message);
+                setIsLoading(false);
                 if (error.code === 'auth/email-already-in-use') {
                     Swal.fire({
                         icon: 'error',
@@ -74,7 +77,7 @@ const SignUp = () => {
                 }
             });
     };
-    
+
     return (
         <div style={{
             backgroundImage: `url(${SignUpImage})`,
@@ -84,7 +87,7 @@ const SignUp = () => {
             <Helmet>
                 <title>Life Link | Sign Up</title>
             </Helmet>
-            <div className=" hero-content justify-around flex-col lg:flex-row-reverse">
+            <div className=" hero-content justify-around flex-col mt-16 lg:flex-row-reverse">
                 <div className="text-center md:w-1/2 lg:text-left">
                     <div className="text-center m-auto w-3/4">
                         <Lottie animationData={groovyWalkAnimation} loop={true} />;
@@ -180,11 +183,9 @@ const SignUp = () => {
 
                         {/* Submit Button */}
                         <div className="form-control mt-6">
-                            <input
-                                className="btn bg-violet-300"
-                                type="submit"
-                                value="Sign up"
-                            />
+                            <button className="btn bg-violet-300" type="submit" disabled={isLoading}>
+                                {isLoading ? <span className="loading loading-spinner text-success">Signing up...</span> : "Sign up"}
+                            </button>
                         </div>
                     </form>
                     <p className="px-6" ><small>Already have an account<Link to="/signin" className="text-blue-700 text-sm font-bold"> login now</Link> </small></p>
