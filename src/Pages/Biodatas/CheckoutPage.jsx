@@ -76,10 +76,10 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border p-4 rounded shadow-md">
-      <h2 className='text-center mt-9 text-2xl'>Total Amount Free: 500</h2>
+    <form onSubmit={handleSubmit} className="border p-4 rounded shadow-md ">
+      <h2 className='text-center mt-9 text-2xl  dark:text-gray-300'>Total Amount Free: 500</h2>
       <div className="mb-4">
-        <label className="block font-medium mb-2">Biodata ID</label>
+        <label className="block font-medium mb-2  dark:text-gray-300">Biodata ID</label>
         <input
           type="text"
           className="border p-2 w-full"
@@ -89,7 +89,7 @@ const CheckoutForm = () => {
       </div>
 
       <div className="mb-4">
-        <label className="block font-medium mb-2">Your Email</label>
+        <label className="block font-medium mb-2 dark:text-gray-300">Your Email</label>
         <input
           type="email"
           className="border p-2 w-full"
@@ -99,7 +99,7 @@ const CheckoutForm = () => {
       </div>
 
       <div className="mb-4">
-        <h3 className="block font-medium mb-2">Card Details</h3>
+        <h3 className="block font-medium mb-2 dark:text-gray-300">Card Details</h3>
         <CardElement
           options={{
             style: {
@@ -120,7 +120,7 @@ const CheckoutForm = () => {
 
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        className="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-600"
         disabled={!stripe}
       >
         Payment ($5)
@@ -131,8 +131,8 @@ const CheckoutForm = () => {
 
 const CheckoutPage = () => (
   <Elements stripe={stripePromise}>
-    <div className="container mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-4">Request Contact Information</h1>
+    <div className="container mx-auto py-24">
+      <h1 className="text-2xl dark:text-white font-bold mb-4">Request Contact Information</h1>
       <CheckoutForm />
     </div>
   </Elements>

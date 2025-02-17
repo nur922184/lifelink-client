@@ -5,6 +5,7 @@ import PremiumProfiles from './PremiumProfiles';
 import HowItWorks from './HowItWorks';
 import SuccessCounter from './SuccessCounter';
 import SuccessStories from './SuccessStories';
+import MembershipPlans from './MembershipPlans';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
            <Banner></Banner>
            <PremiumProfiles></PremiumProfiles>
            <HowItWorks></HowItWorks>
+           <MembershipPlans></MembershipPlans>
            <SuccessCounter></SuccessCounter> 
            <SuccessStories></SuccessStories>
         </div>

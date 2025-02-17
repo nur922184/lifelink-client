@@ -24,7 +24,7 @@ const ApprovedPremium = () => {
   }, []);
 
   return (
-    <div className="container mx-auto dark:bg-slate-900 p-5">
+    <div className="container mx-auto dark:bg-slate-900 p-5 h-screen">
       <h1 className="text-2xl font-bold mb-4 text-center">Approved Premium Data</h1>
 
       {isLoading ? ( // লোডিং চলাকালীন মেসেজ
