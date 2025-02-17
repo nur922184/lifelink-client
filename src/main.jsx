@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider  client={queryClient}>
       <HelmetProvider>
         <AuthProvider>
-          <div className='max-w-screen-xl mx-auto dark:bg-gray-900 transition-colors duration-300'>
+          <div className='dark:bg-gray-900 transition-colors duration-300'>
             <RouterProvider router={Router} />
           </div>
         </AuthProvider>

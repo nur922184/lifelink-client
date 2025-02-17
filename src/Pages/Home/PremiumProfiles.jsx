@@ -94,9 +94,9 @@ const PremiumProfiles = () => {
 
                             {/* Buttons */}
                             <div className="flex justify-around mt-6">
-                                <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm">
+                                <span className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm">
                                     Premium
-                                </button>
+                                </span>
 
                                 <div onClick={() => handleViewProfile(profile._id)}>
                                     <ViewProfile></ViewProfile>

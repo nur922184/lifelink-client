@@ -12,6 +12,7 @@ const LogOut = () => {
         setLoading(true); // লগআউট প্রসেস শুরু হচ্ছে, ফ্ল্যাগ সেট করা
         Logout()
             .then(() => {
+                navigate('/');
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
