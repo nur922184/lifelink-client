@@ -25,6 +25,7 @@ import AdminDahoard from '../Pages/Dashboard/AdminDashboard/AdminDahoard';
 import ApprovedContact from '../Pages/Dashboard/AdminDashboard/ApprovedContact';
 import ApprovedPremium from '../Pages/Dashboard/AdminDashboard/ApprovedPremium';
 import GotMarriedForm from '../Pages/Dashboard/UsesDashboard/GotMarriedForm';
+import ProfilePage from '../Shared/ProfilePage';
 
 
 
@@ -118,6 +119,10 @@ const Router = createBrowserRouter([
             {
                 path:'manage',
                 element:<ManageUsers></ManageUsers>
+            },
+            {
+                path:'profile',
+                element:<ProfilePage></ProfilePage>
             },
             {
                 path:'/dashboard/adminDashboard',

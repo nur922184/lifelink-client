@@ -9,6 +9,7 @@ import useAdmin from "../../Hooks/useAdmin";
 import logo from '../../assets/Images/logo-LifeLink.png'
 import { BsFileEarmarkRuled } from "react-icons/bs";
 import { FaBookBookmark } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ const Sidebar = () => {
       >
         <FaBars size={20} />
       </button>
-  
+
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full bg-white dark:bg-gray-900 dark:text-white w-64 shadow-lg transform ${isOpen ? "translate-x-0" : "-translate-x-full"
@@ -36,7 +37,7 @@ const Sidebar = () => {
           <img className="w-16 h-14" src={logo} alt="" />
           <span className="ml-2 text-lg font-bold text-gray-800 dark:text-white">Dashboard</span>
         </div>
-  
+
         {/* Menu Links */}
         <nav className="mt-2 mb-2">
           <ul className="space-y-1">
@@ -47,25 +48,37 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/adminDashboard"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
                     <FaTachometerAlt className="w-5 h-5" />
-                    <span className="ml-3">Admin Dashboard</span>
+                    <span className="ml-3">Overview</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/profile"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
+                  >
+                    <CgProfile className="w-5 h-5" />
+                    <span className="ml-3">My Profile</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     to="/dashboard/manage"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -77,10 +90,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/allUsers"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -92,10 +104,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/ApprovedPremium"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -107,10 +118,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/ApprovedContactRequest"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -124,12 +134,25 @@ const Sidebar = () => {
                 {/* User menu */}
                 <li>
                   <NavLink
+                    to="/dashboard/profile"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
+                  >
+                    <CgProfile className="w-5 h-5" />
+                    <span className="ml-3">My Profile</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to="/dashboard/editBiodata"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -141,10 +164,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/viewBiodata"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -156,10 +178,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/favourites"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -174,10 +195,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/view"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -189,10 +209,9 @@ const Sidebar = () => {
                   <NavLink
                     to="/dashboard/married"
                     className={({ isActive }) =>
-                      `flex items-center p-2 rounded-lg ${
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
                   >
@@ -204,7 +223,7 @@ const Sidebar = () => {
             )}
           </ul>
         </nav>
-  
+
         <hr />
         <nav className="mt-2 ">
           <ul className="space-y-1">
@@ -212,10 +231,9 @@ const Sidebar = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg ${
-                    isActive
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  `flex items-center p-2 rounded-lg ${isActive
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
               >
@@ -227,10 +245,9 @@ const Sidebar = () => {
               <NavLink
                 to="/Biodatas"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg ${
-                    isActive
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  `flex items-center p-2 rounded-lg ${isActive
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
               >
@@ -242,10 +259,9 @@ const Sidebar = () => {
               <NavLink
                 to="/AboutUs"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg ${
-                    isActive
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  `flex items-center p-2 rounded-lg ${isActive
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
               >
@@ -257,10 +273,9 @@ const Sidebar = () => {
               <NavLink
                 to="/ContactUs"
                 className={({ isActive }) =>
-                  `flex items-center p-2 rounded-lg ${
-                    isActive
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                  `flex items-center p-2 rounded-lg ${isActive
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
               >
@@ -268,7 +283,7 @@ const Sidebar = () => {
                 <span className="ml-3">Contact Us</span>
               </NavLink>
             </li>
-  
+
             <li>
               <LogOut></LogOut>
             </li>
@@ -277,7 +292,7 @@ const Sidebar = () => {
       </div>
     </>
   );
-  
+
 };
 
 export default Sidebar;
