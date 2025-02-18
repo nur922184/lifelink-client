@@ -10,8 +10,8 @@ const HowItWorks = () => {
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">How It Works</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {/* Step 1 */}
-          <div className="bg-gradient-to-b from-black via-gray-900 to-purple-900 dark:bg-gray-800 shadow-lg p-6 rounded-lg transition-colors">
-            <div className="flex justify-center mb-4">
+          <div className="bg-gradient-to-b from-black via-gray-900 to-purple-900 dark:bg-gray-800 shadow-lg p-6 rounded-lg  hover:scale-105 transition-transform duration-300">
+            <div className="flex justify-center mb-4 hover:scale-105 transition-transform duration-300">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">
                 <IoPersonAdd />
               </div>
@@ -25,8 +25,8 @@ const HowItWorks = () => {
           </div>
 
           {/* Step 2 */}
-          <div className="bg-gradient-to-b from-black via-gray-900 to-purple-900 dark:bg-gray-800 shadow-lg p-6 rounded-lg transition-colors">
-            <div className="flex justify-center mb-4">
+          <div className="bg-gradient-to-b from-black via-gray-900 to-purple-900 dark:bg-gray-800 shadow-lg p-6 rounded-lg hover:scale-105 transition-transform duration-300">
+            <div className="flex justify-center mb-4 hover:scale-105 transition-transform duration-300">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">
                 <MdPersonSearch size={32} />
               </div>
@@ -40,8 +40,8 @@ const HowItWorks = () => {
           </div>
 
           {/* Step 3 */}
-          <div className="bg-gradient-to-b from-black via-gray-900 to-purple-900 dark:bg-gray-800 shadow-lg p-6 rounded-lg transition-colors">
-            <div className="flex justify-center mb-4">
+          <div className="bg-gradient-to-b from-black via-gray-900 to-purple-900 dark:bg-gray-800 shadow-lg p-6 rounded-lg hover:scale-105 transition-transform duration-300">
+            <div className="flex justify-center mb-4 hover:scale-105 transition-transform duration-300">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">
                 <FaCodePullRequest />
               </div>

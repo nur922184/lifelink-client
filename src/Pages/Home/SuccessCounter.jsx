@@ -9,7 +9,7 @@ const SuccessCounter = () => {
         <h2 className="text-3xl font-bold text-gray-800 dark:text-slate-50 mb-8">Our Achievements</h2>
         <div className="grid md:grid-cols-4 gap-8">
           {/* Total Biodata */}
-          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg">
+          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-4xl font-bold text-indigo-600">{dashboardData.totalBiodataCount}</h3>
             <div className="flex justify-center -mt-9 absolute">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">
@@ -19,7 +19,7 @@ const SuccessCounter = () => {
             <p className="text-gray-700 mt-2 dark:text-white ">Total Biodata</p>
           </div>
           {/* Boys Biodata */}
-          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg">
+          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-4xl font-bold text-purple-600">{dashboardData.maleBiodataCount}</h3>
             <div className="flex justify-center -mt-9 absolute">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">
@@ -30,7 +30,7 @@ const SuccessCounter = () => {
           </div>
 
           {/* Girls Biodata */}
-          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg">
+          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-4xl font-bold text-pink-600">{dashboardData.femaleBiodataCount}</h3>
             <div className="flex justify-center -mt-9 absolute">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">
@@ -41,7 +41,7 @@ const SuccessCounter = () => {
           </div>
 
           {/* Successful Marriages */}
-          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg">
+          <div className="bg-white dark:bg-slate-800  shadow-lg p-6 rounded-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-4xl font-bold text-green-600">3</h3>
             <div className="flex justify-center -mt-10 absolute">
               <div className="bg-purple-800 text-white w-16 h-16 flex items-center justify-center rounded-full text-2xl font-bold">

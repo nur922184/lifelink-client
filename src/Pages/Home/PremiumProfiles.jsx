@@ -68,7 +68,7 @@ const PremiumProfiles = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sortedProfiles.map((profile) => (
-                        <div key={profile._id} className="w-full mx-auto bg-gradient-to-b from-purple-900 via-gray-900 to-black rounded-xl text-white shadow-lg p-6 relative">
+                        <div key={profile._id} className="w-full mx-auto bg-gradient-to-b from-purple-900 via-gray-900 to-black rounded-xl text-white shadow-lg p-6 relative hover:scale-105 transition-transform duration-300">
                             {/* PRO Badge */}
                             <div className="absolute top-2 left-2 text-black text-xs font-bold px-2 py-1 rounded-full">
                                 <img className="w-6 h-6" src={prim} alt="" />
@@ -80,7 +80,7 @@ const PremiumProfiles = () => {
                                     <img
                                         src={profile.profileImage}
                                         alt="Profile"
-                                        className="w-20 h-20 rounded-full"
+                                        className="w-20 h-20 rounded-full hover:scale-105 transition-transform duration-300"
                                     />
                                 ) : (
                                     <FaUserCircle className="text-gray-500 w-20 h-20" />

@@ -75,7 +75,7 @@ const BiodataDetailsPage = () => {
 
   return (
     <div className="container mx-auto p-5">
-      <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
+      <div className="max-w-4xl mx-auto p-6 bg-gradient-to-b from-purple-900 via-gray-900 to-black dark:bg-opacity-30 rounded-xl shadow-lg transform transition duration-500 hover:scale-105">
         <div className="flex flex-col md:flex-row items-center text-white">
           {/* Left Section */}
           <div className="flex flex-col items-center text-center p-6 md:border-r md:border-white md:w-1/2">

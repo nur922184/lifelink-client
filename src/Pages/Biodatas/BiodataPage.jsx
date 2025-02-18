@@ -170,7 +170,7 @@ const BiodataPage = () => {
                                             />
                                         </div>
                                         <div className="text-center mt-4">
-                                            <h2 className="text-2xl font-semibold text-gray-800">{biodata.name}</h2>
+                                            <h2 className="text-2xl font-semibold text-violet-700">{biodata.name}</h2>
                                             <p className="text-gray-600 text-sm">{biodata.type}</p>
                                         </div>
                                         <div className="mt-4 px-6">

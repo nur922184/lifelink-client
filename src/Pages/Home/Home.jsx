@@ -8,6 +8,7 @@ import SuccessStories from './SuccessStories';
 import MembershipPlans from './MembershipPlans';
 import Security from './Security';
 import Testimonials from './Testimonials';
+import NewsletterSubscription from './NewsletterSubscription';
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
                 <SuccessStories></SuccessStories>
                 <Security></Security>
                 <Testimonials></Testimonials>
+                <NewsletterSubscription></NewsletterSubscription>
             </div>
         </div>
     );

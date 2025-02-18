@@ -35,17 +35,17 @@ const SuccessStories = () => {
           {stories.map((story, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-opacity-30 dark:text-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300"
+              className="bg-gradient-to-b from-purple-900 via-gray-900 to-black dark:bg-opacity-30 dark:text-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300"
             >
               {/* Couple Image */}
               <img
                 src={story.coupleImage}
                 alt="Couple"
-                className="w-full h-48 object-cover rounded-lg mb-4"
+                className="w-full h-48 object-cover rounded-lg mb-4 hover:scale-105 transition-transform duration-300"
               />
 
               {/* Marriage Date */}
-              <p className="text-gray-600 dark:text-white text-sm mb-2">
+              <p className=" text-white text-sm mb-2">
                 Marriage Date: <span className="font-bold">{story.marriageDate}</span>
               </p>
 
@@ -65,7 +65,7 @@ const SuccessStories = () => {
               </div>
 
               {/* Success Story Text */}
-              <p className="text-gray-700 dark:text-green-200 mb-4 text-sm line-clamp-3">{story.successText}</p>
+              <p className="text-violet-200 mb-4 text-sm line-clamp-3">{story.successText}</p>
             </div>
           ))}
         </div>
