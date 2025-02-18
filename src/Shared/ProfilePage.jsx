@@ -1,15 +1,34 @@
+import { useState } from "react";
 import { FaEnvelope, FaEdit } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
+import { updateProfile } from "firebase/auth";
 
 const ProfilePage = () => {
-    const {user} = useAuth();
-    console.log(user)
+  const { user } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [displayName, setDisplayName] = useState(user?.displayName || "");
+  const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+
+  // প্রোফাইল আপডেট ফাংশন
+  const handleUpdateProfile = async () => {
+    if (!user) return;
+    try {
+      await updateProfile(user, { displayName, photoURL });
+      alert("Profile Updated Successfully!");
+      setIsModalOpen(false); // মোডাল বন্ধ করে দাও
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("Failed to update profile.");
+    }
+  };
+
   return (
-<section className="py-16 bg-gradient-to-b from-black via-gray-900 to-purple-900 text-white min-h-screen flex justify-center">
+    <section className="py-16 bg-gradient-to-b from-black via-gray-900 to-purple-900 text-white min-h-screen flex justify-center">
       <div className="max-w-5xl w-full bg-gray-800 p-10 rounded-2xl shadow-xl">
         <h2 className="text-4xl font-bold mb-6 text-center">Welcome, {user.displayName || "User"}</h2>
         <p className="text-gray-400 text-center mb-8">{user.joinDate || "Member since N/A"}</p>
-        
+
+        {/* Profile Card */}
         <div className="flex items-center justify-between bg-gray-900 p-6 rounded-xl shadow-lg">
           <div className="flex items-center gap-4">
             <img
@@ -22,10 +41,14 @@ const ProfilePage = () => {
               <p className="text-gray-300">{user?.email || "user@example.com"}</p>
             </div>
           </div>
-          <button className="bg-blue-500 px-4 py-2 text-white rounded-lg flex items-center gap-2">
+          <button
+            className="bg-blue-500 px-4 py-2 text-white rounded-lg flex items-center gap-2"
+            onClick={() => setIsModalOpen(true)} // ইডিট বাটনে ক্লিক করলে মোডাল ওপেন হবে
+          >
             <FaEdit /> Edit
           </button>
         </div>
+
 
         <div className="grid grid-cols-2 gap-6 mt-8">
           <div>
@@ -41,7 +64,7 @@ const ProfilePage = () => {
             <label className="text-gray-400">Nick Name</label>
             <input
               type="text"
-              value={user.nickName || "Your Nick Name"}
+              value={user.nickName || ""}
               className="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white"
               disabled
             />
@@ -92,9 +115,48 @@ const ProfilePage = () => {
           </div>
           <button className="bg-blue-500 px-4 py-2 text-white rounded-lg">+ Add Email Address</button>
         </div>
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-96">
+              <h3 className="text-xl font-semibold mb-4">Update Profile</h3>
+
+              <label className="text-gray-400">Full Name</label>
+              <input
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                className="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white"
+              />
+
+              <label className="text-gray-400 mt-4">Profile Picture URL</label>
+              <input
+                type="text"
+                value={photoURL}
+                onChange={(e) => setPhotoURL(e.target.value)}
+                className="w-full p-3 mt-2 rounded-lg bg-gray-700 text-white"
+              />
+
+              <div className="flex justify-end gap-4 mt-6">
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="bg-gray-600 px-4 py-2 rounded-lg text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleUpdateProfile}
+                  className="bg-blue-500 px-4 py-2 rounded-lg text-white"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default ProfilePage;
+
+export default ProfilePage; 
