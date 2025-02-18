@@ -6,6 +6,8 @@ import HowItWorks from './HowItWorks';
 import SuccessCounter from './SuccessCounter';
 import SuccessStories from './SuccessStories';
 import MembershipPlans from './MembershipPlans';
+import Security from './Security';
+import Testimonials from './Testimonials';
 
 
 const Home = () => {
@@ -21,6 +23,8 @@ const Home = () => {
            <MembershipPlans></MembershipPlans>
            <SuccessCounter></SuccessCounter> 
            <SuccessStories></SuccessStories>
+           <Security></Security>
+           <Testimonials></Testimonials>
         </div>
     );
 };

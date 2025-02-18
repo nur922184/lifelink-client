@@ -1,4 +1,5 @@
 import { FaCheckCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const MembershipPlans = () => {
   const plans = [
@@ -33,7 +34,7 @@ const MembershipPlans = () => {
       buttonText: "Go VIP",
     }
   ];
-  
+
   return (
     <section className="py-16 max-w-[1496px] mx-auto bg-gradient-to-b from-black via-gray-900 to-purple-900 text-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
@@ -55,9 +56,11 @@ const MembershipPlans = () => {
                   </li>
                 ))}
               </ul>
-              <button className="mt-6 px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold">
-                {plan.buttonText}
-              </button>
+              <Link to='/signin'>
+                <button className="mt-6 px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold">
+                  {plan.buttonText}
+                </button>
+              </Link>
             </div>
           ))}
         </div>
