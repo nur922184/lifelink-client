@@ -87,7 +87,7 @@ const AllUsers = () => {
                                 <td className="border px-2 sm:px-4 py-2">{user.email}</td>
                                 <td className="border px-2 sm:px-4 py-2">
                                     {user.role === 'admin' ? (
-                                        <button className="text-white px-2 sm:px-3 py-1 rounded bg-blue-600 flex items-center justify-center">
+                                        <button className="text-white px-2 sm:px-3 py-1 rounded bg-purple-600 flex items-center justify-center">
                                             <FaUser size={18} />
                                         </button>
                                     ) : user.role === 'premium' ? (

@@ -200,7 +200,7 @@ const BiodataPage = () => {
                         {/* Pagination Controls */}
                         <div className="flex justify-center items-center mt-6">
                             <button
-                                className="px-3 py-1 mx-1 border rounded-md"
+                                className="px-3 py-1 mx-1 border rounded-md dark:text-white"
                                 disabled={currentPage === 1}
                                 onClick={() => handlePageChange(currentPage - 1)}
                             >
@@ -209,7 +209,7 @@ const BiodataPage = () => {
                             {[...Array(totalPages)].map((_, index) => (
                                 <button
                                     key={index}
-                                    className={`px-3 py-1 mx-1 border rounded-md ${
+                                    className={`px-3 py-1 mx-1 border rounded-md dark:text-violet-700 ${
                                         currentPage === index + 1 ? "bg-gray-300" : ""
                                     }`}
                                     onClick={() => handlePageChange(index + 1)}
@@ -218,7 +218,7 @@ const BiodataPage = () => {
                                 </button>
                             ))}
                             <button
-                                className="px-3 py-1 mx-1 border rounded-md"
+                                className="px-3 py-1 mx-1 border rounded-md dark:text-white"
                                 disabled={currentPage === totalPages}
                                 onClick={() => handlePageChange(currentPage + 1)}
                             >

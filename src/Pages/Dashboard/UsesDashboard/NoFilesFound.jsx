@@ -25,7 +25,7 @@ const NoFilesFound = () => {
                 </button>
                 <Link to={'/dashboard/addbiodata'}>
                     <button
-                        className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring focus:ring-blue-300"
+                        className="flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:ring focus:ring-blue-300"
                     >
                         <MdOutlinePostAdd className="mr-2" /> New Bio data
                     </button>

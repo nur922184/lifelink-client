@@ -139,13 +139,13 @@ const ManageUsers = () => {
                                     <div className="flex flex-wrap gap-2">
                                         <button
                                             onClick={() => handleMakeAdmin(user._id)}
-                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                            className="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700"
                                         >
                                             Make Admin
                                         </button>
                                         <button
                                             onClick={() => handleMakePremium(user._id)}
-                                            className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                                            className="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700"
                                         >
                                             Make Premium
                                         </button>

@@ -41,7 +41,7 @@ const PremiumProfiles = () => {
     };
 
     return (
-        <div className="container mx-auto p-5">
+        <div className="container max-w-[1496px] mx-auto p-5">
             <h2 className="text-2xl font-bold text-center mb-5 dark:text-white">Premium Members</h2>
 
             {/* Dropdown for sorting */}

@@ -134,7 +134,7 @@ const BiodataDetailsPage = () => {
         <div className="mt-4">
           <button
             onClick={handleAddToFavorites}
-            className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600"
+            className="bg-purple-600 text-white px-4 py-2 rounded mr-2 hover:bg-purple-700"
           >
             <FaHeart />
           </button>

@@ -27,7 +27,7 @@ const BiodataFetcher = () => {
     }, [user?.email]);
 
     return (
-        <div className="container mx-auto p-5 bg-white dark:bg-gray-900">
+        <div className="container mx-auto p-5 bg-white dark:bg-gray-900 h-screen">
             {isLoading ? (
                 <div className="flex justify-center items-center h-screen">
                     <p className="text-gray-500 text-lg"><Loading></Loading></p>
@@ -107,7 +107,7 @@ const BiodataFetcher = () => {
 
                                     <div className="mt-6 flex justify-center md:justify-start">
                                         <Link to={`/checkout/${bio._id}`}>
-                                            <button className="btn bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded">
+                                            <button className="btn bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded">
                                                 Premium Now
                                             </button>
                                         </Link>

@@ -107,7 +107,7 @@ const EditBiodaata = () => {
                                     <div className="mt-8 flex justify-center sm:justify-start">
                                         <Link to={`/dashboard/edit-profile/${bio._id}`}>
                                             <button
-                                                className="btn btn-secondary w-40 bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600"
+                                                className="btn btn-secondary w-40 bg-purple-600 text-white font-medium py-2 px-4 rounded hover:bg-purple-700"
                                             >
                                                 Edit
                                             </button>

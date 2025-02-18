@@ -322,7 +322,7 @@ const EditBiodata = () => {
             <div className="col-span-1 sm:col-span-2">
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm sm:text-base"
+                    className="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm sm:text-base"
                 >
                     Update 
                 </button>

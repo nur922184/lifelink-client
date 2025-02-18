@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaEnvelope, FaEdit } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -14,7 +15,13 @@ const ProfilePage = () => {
     if (!user) return;
     try {
       await updateProfile(user, { displayName, photoURL });
-      alert("Profile Updated Successfully!");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Profile Updated Successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       setIsModalOpen(false); // মোডাল বন্ধ করে দাও
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -42,7 +49,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <button
-            className="bg-blue-500 px-4 py-2 text-white rounded-lg flex items-center gap-2"
+            className="bg-purple-600 px-4 py-2 text-white rounded-lg flex items-center gap-2"
             onClick={() => setIsModalOpen(true)} // ইডিট বাটনে ক্লিক করলে মোডাল ওপেন হবে
           >
             <FaEdit /> Edit
@@ -113,7 +120,7 @@ const ProfilePage = () => {
             <FaEnvelope className="text-purple-400 text-xl" />
             <p className="text-gray-300">{user?.email || "user@example.com"} <span className="text-gray-500">(1 month ago)</span></p>
           </div>
-          <button className="bg-blue-500 px-4 py-2 text-white rounded-lg">+ Add Email Address</button>
+          <button className="bg-purple-600 px-4 py-2 text-white rounded-lg">+ Add Email Address</button>
         </div>
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -145,7 +152,7 @@ const ProfilePage = () => {
                 </button>
                 <button
                   onClick={handleUpdateProfile}
-                  className="bg-blue-500 px-4 py-2 rounded-lg text-white"
+                  className="bg-purple-600 px-4 py-2 rounded-lg text-white"
                 >
                   Save
                 </button>

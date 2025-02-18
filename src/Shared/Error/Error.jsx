@@ -12,7 +12,7 @@ const Error = () => {
         
         <button
           onClick={() => navigate('/')}
-          className="px-6 py-3 mt-56 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow-md transition"
+          className="px-6 py-3 mt-56 text-white bg-purple-600 hover:bg-purple-700 rounded-md shadow-md transition"
         >
           Back to Home
         </button>

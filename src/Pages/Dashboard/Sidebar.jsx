@@ -49,7 +49,7 @@ const Sidebar = () => {
                     to="/dashboard/adminDashboard"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -63,7 +63,7 @@ const Sidebar = () => {
                     to="/dashboard/profile"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -77,7 +77,7 @@ const Sidebar = () => {
                     to="/dashboard/manage"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -91,7 +91,7 @@ const Sidebar = () => {
                     to="/dashboard/allUsers"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -105,7 +105,7 @@ const Sidebar = () => {
                     to="/dashboard/ApprovedPremium"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -119,7 +119,7 @@ const Sidebar = () => {
                     to="/dashboard/ApprovedContactRequest"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -137,7 +137,7 @@ const Sidebar = () => {
                     to="/dashboard/profile"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -151,7 +151,7 @@ const Sidebar = () => {
                     to="/dashboard/editBiodata"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -165,7 +165,7 @@ const Sidebar = () => {
                     to="/dashboard/viewBiodata"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -179,7 +179,7 @@ const Sidebar = () => {
                     to="/dashboard/favourites"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -196,7 +196,7 @@ const Sidebar = () => {
                     to="/dashboard/view"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -210,7 +210,7 @@ const Sidebar = () => {
                     to="/dashboard/married"
                     className={({ isActive }) =>
                       `flex items-center p-2 rounded-lg ${isActive
-                        ? "bg-blue-500 text-white"
+                        ? "bg-purple-600 text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`
                     }
@@ -232,7 +232,7 @@ const Sidebar = () => {
                 to="/"
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg ${isActive
-                    ? "bg-blue-500 text-white"
+                    ? "bg-purple-600 text-white"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
@@ -246,7 +246,7 @@ const Sidebar = () => {
                 to="/Biodatas"
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg ${isActive
-                    ? "bg-blue-500 text-white"
+                    ? "bg-purple-600 text-white"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
@@ -260,7 +260,7 @@ const Sidebar = () => {
                 to="/AboutUs"
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg ${isActive
-                    ? "bg-blue-500 text-white"
+                    ? "bg-purple-600 text-white"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }
@@ -274,7 +274,7 @@ const Sidebar = () => {
                 to="/ContactUs"
                 className={({ isActive }) =>
                   `flex items-center p-2 rounded-lg ${isActive
-                    ? "bg-blue-500 text-white"
+                    ? "bg-purple-600 text-white"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`
                 }

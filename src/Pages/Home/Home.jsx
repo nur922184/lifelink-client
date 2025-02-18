@@ -11,20 +11,22 @@ import Testimonials from './Testimonials';
 
 
 const Home = () => {
-  
+
     return (
         <div>
             <Helmet>
                 <title>Life Link | Home</title>
             </Helmet>
-           <Banner></Banner>
-           <PremiumProfiles></PremiumProfiles>
-           <HowItWorks></HowItWorks>
-           <MembershipPlans></MembershipPlans>
-           <SuccessCounter></SuccessCounter> 
-           <SuccessStories></SuccessStories>
-           <Security></Security>
-           <Testimonials></Testimonials>
+            <div className='max-w-[1496px] mx-auto '>
+                <Banner></Banner>
+                <PremiumProfiles></PremiumProfiles>
+                <HowItWorks></HowItWorks>
+                <MembershipPlans></MembershipPlans>
+                <SuccessCounter></SuccessCounter>
+                <SuccessStories></SuccessStories>
+                <Security></Security>
+                <Testimonials></Testimonials>
+            </div>
         </div>
     );
 };
