@@ -9,15 +9,15 @@ const ContactDetails = () => {
                 If you have any questions or need further information, feel free to reach out to us.
             </p>
             <div className="flex items-center space-x-4">
-                <FaMapMarkerAlt className="text-blue-500 text-2xl" />
+                <FaMapMarkerAlt className="text-purple-600 text-2xl" />
                 <p className="text-gray-700">123 LifeLink Street, Dhaka, Bangladesh</p>
             </div>
             <div className="flex items-center space-x-4">
-                <FaPhoneAlt className="text-blue-500 text-2xl" />
+                <FaPhoneAlt className="text-purple-600 text-2xl" />
                 <p className="text-gray-700">+880 123-456-7890</p>
             </div>
             <div className="flex items-center space-x-4">
-                <FaEnvelope className="text-blue-500 text-2xl" />
+                <FaEnvelope className="text-purple-600 text-2xl" />
                 <p className="text-gray-700">info@lifelink.com</p>
             </div>
         </div>

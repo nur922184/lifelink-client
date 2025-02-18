@@ -5,10 +5,10 @@ const Security = () => {
     return (
         <div>
             {/* Security & Privacy Section */}
-            <section className="py-16 bg-gray-900 text-white mt-16">
+            <section className="py-16 dark:bg-gray-900 dark:text-white mt-16">
                 <div className="max-w-6xl mx-auto px-6 text-center">
                     <h2 className="text-4xl font-bold mb-6">Safe & Secure Platform</h2>
-                    <p className="mb-12 text-gray-300">Your privacy and security are our top priorities. We ensure your data is encrypted and securely stored.</p>
+                    <p className="mb-12 dark:text-gray-200 text-black">Your privacy and security are our top priorities. We ensure your data is encrypted and securely stored.</p>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="bg-gray-800 p-6 rounded-2xl shadow-xl text-center">
