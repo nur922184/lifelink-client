@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaBars, FaTachometerAlt, FaClipboard, FaEnvelope, FaUser, FaHome, FaAudible } from "react-icons/fa";
+import { FaBars, FaTachometerAlt, FaClipboard, FaEnvelope, FaUser, FaHome, FaAudible, FaStackOverflow, FaTimes } from "react-icons/fa";
 import LogOut from "../../Component/SignOut/LogOut";
 import { BiSolidSpa } from "react-icons/bi";
 import { MdContacts } from "react-icons/md";
@@ -24,7 +24,7 @@ const Sidebar = () => {
         className="md:hidden fixed top-6 left-4 z-50 bg-teal-900 bg-opacity-15 dark:bg-opacity-15 dark:bg-red-600 dark:text-white text-gray-950 p-2 rounded-md"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <FaBars size={20} />
+        {isOpen ? <FaTimes className="text-red-600" size={20} /> : <FaBars className="text-violet-600" size={20} />}
       </button>
 
       {/* Sidebar */}
@@ -33,9 +33,9 @@ const Sidebar = () => {
           } transition-transform duration-300 md:translate-x-0`}
       >
         {/* Logo Section */}
-        <div className="flex items-center p-4  border-b">
-          <img className="w-16 h-14" src={logo} alt="" />
+        <div className="flex flex-col items-center p-4  border-b">
           <span className="ml-2 text-lg font-bold text-gray-800 dark:text-white">Dashboard</span>
+          <img className="w-16 h-14" src={logo} alt="" />
         </div>
 
         {/* Menu Links */}
@@ -132,6 +132,20 @@ const Sidebar = () => {
             ) : (
               <>
                 {/* User menu */}
+                <li>
+                  <NavLink
+                    to="/dashboard/overview"
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg ${isActive
+                        ? "bg-purple-600 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      }`
+                    }
+                  >
+                    <FaStackOverflow className="w-5 h-5" />
+                    <span className="ml-3">Overview</span>
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="/dashboard/profile"

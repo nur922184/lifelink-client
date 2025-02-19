@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import NoFound from './NoFound';
 import Loading from '../../../Shared/Loading/Loading';
+import { FaEdit } from 'react-icons/fa';
 
 const EditBiodaata = () => {
     const { user } = useAuth(); // `user` থেকে email পাওয়া যাচ্ছে।
@@ -38,68 +39,60 @@ const EditBiodaata = () => {
                             key={index}
                             className="shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-6 bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
                         >
-                            <div className="flex-shrink-0">
-                                <img
-                                    src={bio.profileImage}
-                                    alt={bio.name}
-                                    className="w-32 h-32 object-cover rounded-full shadow-lg"
-                                />
+                            <div className="flex items-center gap-5">
+                                {/* Profile Image with Border */}
+                                <div className="relative">
+                                    <div className="w-24 h-24 rounded-full border-4 border-green-500 p-1">
+                                        <img
+                                            src={bio.profileImage}
+                                            alt={bio.name}
+                                            className="w-full h-full object-cover rounded-full"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Profile Info */}
+                                <div className='flex flex-col'>
+                                    <div>
+                                        <h2 className="text-2xl font-bold">{bio.name}</h2>
+                                        <p className="text-sm text-gray-500 dark:text-gray-300">{bio.contactEmail}</p>
+                                    </div>
+                                    <div className="mt-4">
+                                        <p className="text-sm text-gray-500 dark:text-gray-300">Profile Completion: <strong>60%</strong></p>
+                                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-2">
+                                            <div className="bg-green-500 h-2 rounded-full" style={{ width: "60%" }}></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-6 p-4 sm:p-8 bg-gray-50 dark:bg-gray-700">
-                                <div className="flex-grow w-full sm:w-auto">
-                                    <h2 className="text-2xl font-bold text-center sm:text-left">{bio.name}</h2>
-                                    <div className="flex gap-10">
-                                        <div className="mt-4 space-y-2">
-                                            <p className="text-sm">
-                                                <strong>Email:</strong> {bio.contactEmail}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Occupation:</strong> {bio.occupation}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Age:</strong> {bio.age} years
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Height:</strong> {bio.height}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Weight:</strong> {bio.weight}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Race:</strong> {bio.race}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Father's Name:</strong> {bio.fathersName}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Mother's Name:</strong> {bio.mothersName}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Permanent Division:</strong> {bio.permanentDivision}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Present Division:</strong> {bio.presentDivision}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Mobile Number:</strong> {bio.mobileNumber}
-                                            </p>
-                                            <p className="text-sm">
-                                                <strong>Status:</strong> {bio.status}
-                                            </p>
+                                <div className="flex-grow flex-col w-full sm:w-auto">
+                                    <div className='flex flex-row'>
+
+                                        <div className="mt-6">
+                                            <h3 className="text-lg font-semibold">Profile Details:</h3>
+                                            <ul className="text-sm space-y-1 mt-2">
+                                                <li><strong>Occupation:</strong> {bio.occupation}</li>
+                                                <li><strong>Age:</strong> {bio.age} years</li>
+                                                <li><strong>Height:</strong> {bio.height}</li>
+                                                <li><strong>Weight:</strong> {bio.weight}</li>
+                                                <li><strong>Race:</strong> {bio.race}</li>
+                                                <li><strong>Father's Name:</strong> {bio.fathersName}</li>
+                                                <li><strong>Mother's Name:</strong> {bio.mothersName}</li>
+                                                <li><strong>Permanent Division:</strong> {bio.permanentDivision}</li>
+                                                <li><strong>Present Division:</strong> {bio.presentDivision}</li>
+                                                <li><strong>Mobile Number:</strong> {bio.mobileNumber}</li>
+                                                <li><strong>Status:</strong> {bio.status}</li>
+                                            </ul>
                                         </div>
 
+                                        {/* Partner Expectations */}
                                         <div className="mt-6">
                                             <h3 className="text-lg font-semibold">Partner Expectations:</h3>
                                             <ul className="list-disc list-inside text-sm space-y-1">
-                                                <li>
-                                                    <strong>Age:</strong> {bio.expectedPartnerAge} years
-                                                </li>
-                                                <li>
-                                                    <strong>Height:</strong> {bio.expectedPartnerHeight}
-                                                </li>
-                                                <li>
-                                                    <strong>Weight:</strong> {bio.expectedPartnerWeight}
-                                                </li>
+                                                <li><strong>Age:</strong> {bio.expectedPartnerAge} years</li>
+                                                <li><strong>Height:</strong> {bio.expectedPartnerHeight}</li>
+                                                <li><strong>Weight:</strong> {bio.expectedPartnerWeight}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -109,6 +102,7 @@ const EditBiodaata = () => {
                                             <button
                                                 className="btn btn-secondary w-40 bg-purple-600 text-white font-medium py-2 px-4 rounded hover:bg-purple-700"
                                             >
+                                                <FaEdit></FaEdit>
                                                 Edit
                                             </button>
                                         </Link>

@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecurePublic from "../../../Hooks/useAxiosSecurePublic";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const EditBiodata = () => {
     const axiosPublic = useAxiosSecurePublic();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
     const {
         register,
@@ -18,6 +20,8 @@ const EditBiodata = () => {
 
     const onSubmit = async (data) => {
         try {
+            setLoading(true); // লোডিং শুরু
+
             // নতুন ডেটার মধ্যে শুধু পরিবর্তিত ফিল্ডগুলো বের করা
             const updatedData = {};
             Object.keys(data).forEach((key) => {
@@ -29,6 +33,7 @@ const EditBiodata = () => {
             // যদি কোনো ফিল্ড পরিবর্তিত না হয়, তখন কোনো রিকোয়েস্ট পাঠাবেন না
             if (Object.keys(updatedData).length === 0) {
                 alert("No changes made to update.");
+                setLoading(false); // লোডিং বন্ধ
                 return;
             }
 
@@ -38,13 +43,13 @@ const EditBiodata = () => {
             if (response.status === 200) {
                 console.log("Data successfully updated:", response.data);
                 Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Data successfully updated',
+                    position: "top-end",
+                    icon: "success",
+                    title: "Data successfully updated",
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                navigate('/dashboard/editBiodata');
+                navigate("/dashboard/editBiodata");
             } else {
                 console.error("Error updating data:", response.statusText);
                 alert("Failed to update biodata. Please try again.");
@@ -52,6 +57,8 @@ const EditBiodata = () => {
         } catch (error) {
             console.error("Network error:", error);
             alert("An error occurred. Please check your connection.");
+        } finally {
+            setLoading(false); // লোডিং শেষ হলে বন্ধ করুন
         }
     };
 
@@ -322,9 +329,14 @@ const EditBiodata = () => {
             <div className="col-span-1 sm:col-span-2">
                 <button
                     type="submit"
-                    className="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm sm:text-base"
+                    className="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm sm:text-base flex items-center justify-center"
+                    disabled={loading}
                 >
-                    Update 
+                    {loading ? (
+                        <span className="loading loading-spinner text-secondary"></span>
+                    ) : (
+                        "Update"
+                    )}
                 </button>
             </div>
         </form>

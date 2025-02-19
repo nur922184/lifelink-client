@@ -26,6 +26,7 @@ import ApprovedContact from '../Pages/Dashboard/AdminDashboard/ApprovedContact';
 import ApprovedPremium from '../Pages/Dashboard/AdminDashboard/ApprovedPremium';
 import GotMarriedForm from '../Pages/Dashboard/UsesDashboard/GotMarriedForm';
 import ProfilePage from '../Shared/ProfilePage';
+import DashboardOverview from '../Pages/Dashboard/UsesDashboard/DashboardOverview';
 
 
 
@@ -95,6 +96,10 @@ const Router = createBrowserRouter([
             {
                 path:'addbiodata',
                 element:<PrivateRoute><BiodataForm></BiodataForm></PrivateRoute>
+            },
+            {
+                path:'overview',
+                element:<PrivateRoute><DashboardOverview></DashboardOverview></PrivateRoute>
             },
             {
                 path:'view',
