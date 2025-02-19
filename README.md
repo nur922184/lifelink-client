@@ -15,11 +15,11 @@ Before running the project, ensure you have the following installed:
 ### Installation Steps
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/your-username/lifelinkdb-dashboard.git
+   git clone https://github.com/nur922184/lifelink-client
    ```
 2. **Navigate into the Project Directory:**
    ```sh
-   cd lifelinkdb-dashboard
+   cd lifelink-client
    ```
 3. **Install Dependencies:**
    ```sh
