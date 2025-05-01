@@ -18,12 +18,11 @@ const BiodataPage = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-    const [loading, setLoading] = useState(true); // Loading state
+    const [loading, setLoading] = useState(true);
 
-    // Fetch biodata from the API
     useEffect(() => {
         const fetchBiodatas = async () => {
-            setLoading(true); // Start loading
+            setLoading(true);
             try {
                 const response = await fetch("https://final-project-server-tau-jade.vercel.app/biodata");
                 const data = await response.json();
@@ -32,34 +31,26 @@ const BiodataPage = () => {
             } catch (error) {
                 console.error("Failed to fetch biodata:", error);
             } finally {
-                setLoading(false); // End loading
+                setLoading(false);
             }
         };
 
         fetchBiodatas();
     }, []);
 
-    // Apply filters
     useEffect(() => {
         const { ageRange, biodataType, division } = filters;
-
         const filtered = biodatas.filter((biodata) => {
-            const matchesAge =
-                biodata.age >= ageRange[0] && biodata.age <= ageRange[1];
-            const matchesType =
-                biodataType === "" || biodata.type.toLowerCase() === biodataType;
-            const matchesDivision =
-                division === "" ||
-                biodata.permanentDivision.toLowerCase() === division;
-
+            const matchesAge = biodata.age >= ageRange[0] && biodata.age <= ageRange[1];
+            const matchesType = biodataType === "" || biodata.type.toLowerCase() === biodataType;
+            const matchesDivision = division === "" || biodata.permanentDivision.toLowerCase() === division;
             return matchesAge && matchesType && matchesDivision;
         });
 
         setFilteredBiodatas(filtered);
-        setCurrentPage(1); // Reset to first page when filters change
+        setCurrentPage(1);
     }, [filters, biodatas]);
 
-    // Pagination logic
     const totalItems = filteredBiodatas.length;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -79,78 +70,87 @@ const BiodataPage = () => {
     };
 
     return (
-        <div className="mx-auto p-5 grid grid-cols-12 gap-6 py-32">
+        <div className="mx-auto px-5 grid grid-cols-1 md:grid-cols-12 gap-6 py-32">
             <Helmet>
                 <title>Life Link | BioData</title>
             </Helmet>
-            {/* Sidebar for Filters */}
-            <div className="col-span-5 md:col-span-3 border h-screen dark:text-white border-gray-300 p-4 rounded-lg sticky z-0 block shadow-md">
-                <h2 className="text-xl font-bold mb-4">Filter Biodatas</h2>
-                <div className="mb-4">
-                    <label className="block font-medium mb-2">Age Range</label>
-                    <input
-                        type="number"
-                        placeholder="Min"
-                        className="border p-2 w-full mb-2 dark:text-black"
-                        value={filters.ageRange[0]}
-                        onChange={(e) =>
-                            handleFilterChange("ageRange", [
-                                parseInt(e.target.value) || 0,
-                                filters.ageRange[1],
-                            ])
-                        }
-                    />
-                    <input
-                        type="number"
-                        placeholder="Max"
-                        className="border p-2 w-full dark:text-black"
-                        value={filters.ageRange[1]}
-                        onChange={(e) =>
-                            handleFilterChange("ageRange", [
-                                filters.ageRange[0],
-                                parseInt(e.target.value) || 100,
-                            ])
-                        }
-                    />
-                </div>
+{/* Sidebar for Filters */}
+<div className="col-span-12 md:col-span-3 border h-auto md:h-screen dark:text-white border-gray-300 p-4 rounded-lg md:sticky top-32 z-0 shadow-md order-1 md:order-none">
+    <h2 className="text-xl font-bold mb-4">Filter Biodatas</h2>
 
-                <div className="mb-4">
-                    <label className="block font-medium mb-2">Biodata Type</label>
-                    <select
-                        className="border p-2 w-full dark:text-black"
-                        value={filters.biodataType}
-                        onChange={(e) => handleFilterChange("biodataType", e.target.value)}
-                    >
-                        <option value="">All</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
+    {/* Grid layout for small devices */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Age Range */}
+        <div>
+            <label className="block font-medium mb-1">Min Age</label>
+            <input
+                type="number"
+                className="border p-2 w-full text-black dark:text-white bg-white dark:bg-gray-700"
+                value={filters.ageRange[0]}
+                onChange={(e) =>
+                    handleFilterChange("ageRange", [
+                        parseInt(e.target.value) || 0,
+                        filters.ageRange[1],
+                    ])
+                }
+            />
+        </div>
+        <div>
+            <label className="block font-medium mb-1">Max Age</label>
+            <input
+                type="number"
+                className="border p-2 w-full text-black dark:text-white bg-white dark:bg-gray-700"
+                value={filters.ageRange[1]}
+                onChange={(e) =>
+                    handleFilterChange("ageRange", [
+                        filters.ageRange[0],
+                        parseInt(e.target.value) || 100,
+                    ])
+                }
+            />
+        </div>
 
-                <div className="mb-4">
-                    <label className="block font-medium mb-2">Division</label>
-                    <select
-                        className="border p-2 w-full dark:text-black"
-                        value={filters.division}
-                        onChange={(e) => handleFilterChange("division", e.target.value)}
-                    >
-                        <option value="">All</option>
-                        <option value="dhaka">Dhaka</option>
-                        <option value="chattagram">Chattagram</option>
-                        <option value="rangpur">Rangpur</option>
-                        <option value="barisal">Barisal</option>
-                        <option value="khulna">Khulna</option>
-                        <option value="mymensingh">Mymensingh</option>
-                        <option value="sylhet">Sylhet</option>
-                    </select>
-                </div>
-            </div>
+        {/* Biodata Type */}
+        <div className="col-span-2">
+            <label className="block font-medium mb-1">Biodata Type</label>
+            <select
+                className="border p-2 w-full text-black dark:text-white bg-white dark:bg-gray-700"
+                value={filters.biodataType}
+                onChange={(e) => handleFilterChange("biodataType", e.target.value)}
+            >
+                <option value="">All</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        {/* Division */}
+        <div className="col-span-2">
+            <label className="block font-medium mb-1">Division</label>
+            <select
+                className="border p-2 w-full text-black dark:text-white bg-white dark:bg-gray-700"
+                value={filters.division}
+                onChange={(e) => handleFilterChange("division", e.target.value)}
+            >
+                <option value="">All</option>
+                <option value="dhaka">Dhaka</option>
+                <option value="chattagram">Chattagram</option>
+                <option value="rangpur">Rangpur</option>
+                <option value="barisal">Barisal</option>
+                <option value="khulna">Khulna</option>
+                <option value="mymensingh">Mymensingh</option>
+                <option value="sylhet">Sylhet</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 
             {/* Biodata List */}
-            <div className="col-span-7 md:col-span-9">
+            <div className="col-span-12 md:col-span-9 order-2">
                 {loading ? (
                     <div className="flex justify-center items-center h-screen">
-                       <Loading></Loading>
+                        <Loading />
                     </div>
                 ) : (
                     <div>
@@ -189,7 +189,7 @@ const BiodataPage = () => {
                                         </div>
                                         <div className="text-center mt-4 mb-6">
                                             <Link to={`/profile/${biodata._id}`}>
-                                                <ViewProfile id="custom-id"></ViewProfile>
+                                                <ViewProfile id="custom-id" />
                                             </Link>
                                         </div>
                                     </div>
@@ -233,4 +233,3 @@ const BiodataPage = () => {
 };
 
 export default BiodataPage;
-
